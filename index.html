@@ -13,119 +13,46 @@
     tailwind.config = {
       theme: {
         extend: {
-          fontFamily: {
-            display: ['Sora', 'sans-serif'],
-            body: ['DM Sans', 'sans-serif'],
-          },
-          colors: {
-            brand: {
-              50: '#eef2ff',
-              100: '#e0e7ff',
-              500: '#6366f1',
-              600: '#4f46e5',
-              700: '#4338ca',
-              900: '#1e1b4b',
-            },
-            accent: '#06b6d4',
-          },
-          maxWidth: {
-            container: '1200px',
-          },
-        },
-      },
+          fontFamily: { display: ['Sora','sans-serif'], body: ['DM Sans','sans-serif'] },
+          colors: { brand: { 50:'#eef2ff',100:'#e0e7ff',500:'#6366f1',600:'#4f46e5',700:'#4338ca',900:'#1e1b4b' }, accent:'#06b6d4' },
+          maxWidth: { container:'1200px' }
+        }
+      }
     };
   </script>
   <style>
-    * { scroll-behavior: smooth; }
-    body { font-family: 'DM Sans', sans-serif; }
-    h1, h2, h3, .font-display { font-family: 'Sora', sans-serif; }
-
-    /* Hero gradient */
-    .hero-bg {
-      background: linear-gradient(135deg, #eef2ff 0%, #f0f9ff 40%, #ede9fe 100%);
-    }
-
-    /* Animated gradient text */
-    .gradient-text {
-      background: linear-gradient(135deg, #4338ca, #6366f1, #06b6d4);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    /* CTA gradient button */
-    .btn-primary {
-      background: linear-gradient(135deg, #4f46e5, #6366f1);
-      transition: all 0.3s ease;
-    }
-    .btn-primary:hover {
-      background: linear-gradient(135deg, #4338ca, #4f46e5);
-      transform: translateY(-2px);
-      box-shadow: 0 12px 30px rgba(79,70,229,0.35);
-    }
-
-    /* Card hover */
-    .card-hover {
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-    }
-    .card-hover:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-    }
-
-    /* Fade-in animation */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .fade-up { animation: fadeUp 0.7s ease both; }
-    .delay-1 { animation-delay: 0.1s; }
-    .delay-2 { animation-delay: 0.2s; }
-    .delay-3 { animation-delay: 0.3s; }
-    .delay-4 { animation-delay: 0.4s; }
-
-    /* Navbar blur */
-    nav {
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-    }
-
-    /* Mobile menu */
-    #mobile-menu { transition: max-height 0.3s ease, opacity 0.3s ease; max-height: 0; overflow: hidden; opacity: 0; }
-    #mobile-menu.open { max-height: 300px; opacity: 1; }
-
-    /* Final CTA gradient */
-    .cta-gradient {
-      background: linear-gradient(135deg, #4338ca 0%, #6366f1 40%, #06b6d4 100%);
-    }
-
-    /* Subtle section pattern */
-    .section-pattern {
-      background-color: #f8faff;
-      background-image: radial-gradient(#e0e7ff 1px, transparent 1px);
-      background-size: 24px 24px;
-    }
+    *{scroll-behavior:smooth}
+    body{font-family:'DM Sans',sans-serif}
+    h1,h2,h3,.font-display{font-family:'Sora',sans-serif}
+    .hero-bg{background:linear-gradient(135deg,#eef2ff 0%,#f0f9ff 40%,#ede9fe 100%)}
+    .gradient-text{background:linear-gradient(135deg,#4338ca,#6366f1,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .btn-primary{background:linear-gradient(135deg,#4f46e5,#6366f1);transition:all .3s ease}
+    .btn-primary:hover{background:linear-gradient(135deg,#4338ca,#4f46e5);transform:translateY(-2px);box-shadow:0 12px 30px rgba(79,70,229,.35)}
+    .card-hover{transition:transform .25s ease,box-shadow .25s ease}
+    .card-hover:hover{transform:translateY(-4px);box-shadow:0 20px 40px rgba(0,0,0,.08)}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+    .fade-up{animation:fadeUp .7s ease both}
+    .delay-1{animation-delay:.1s}.delay-2{animation-delay:.2s}.delay-3{animation-delay:.3s}
+    nav{backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+    #mobile-menu{transition:max-height .3s ease,opacity .3s ease;max-height:0;overflow:hidden;opacity:0}
+    #mobile-menu.open{max-height:300px;opacity:1}
+    .cta-gradient{background:linear-gradient(135deg,#4338ca 0%,#6366f1 40%,#06b6d4 100%)}
+    .section-pattern{background-color:#f8faff;background-image:radial-gradient(#e0e7ff 1px,transparent 1px);background-size:24px 24px}
   </style>
 </head>
 <body class="text-gray-800 antialiased">
 
-  <!-- NAVBAR -->
   <nav class="fixed top-0 left-0 right-0 z-50 bg-white/80 border-b border-gray-100/80">
     <div class="max-w-container mx-auto px-5 sm:px-8">
       <div class="flex items-center justify-between h-16">
-        <!-- Logo -->
         <a href="index.html" class="flex flex-col leading-tight group" aria-label="NoBarrierTech Ana Sayfa">
-          <span class="font-display font-700 text-lg text-brand-600 group-hover:text-brand-700 transition-colors" style="font-weight:700">NoBarrierTech</span>
-          <span class="text-xs text-gray-400 font-body" style="font-size:10px;letter-spacing:0.03em">Engelsiz Teknoloji</span>
+          <span class="font-display text-lg text-brand-600 group-hover:text-brand-700 transition-colors" style="font-weight:700">NoBarrierTech</span>
+          <span class="text-gray-400" style="font-size:10px;letter-spacing:0.03em">Engelsiz Teknoloji</span>
         </a>
-
-        <!-- Desktop nav -->
         <div class="hidden md:flex items-center gap-8">
           <a href="solutions.html" class="text-sm font-medium text-gray-600 hover:text-brand-600 transition-colors">Çözümler</a>
           <a href="about.html" class="text-sm font-medium text-gray-600 hover:text-brand-600 transition-colors">Hakkımızda</a>
         </div>
-
-        <!-- Hamburger -->
         <button id="hamburger" class="md:hidden flex flex-col justify-center gap-1.5 w-10 h-10 rounded-lg hover:bg-gray-100 transition-colors p-2" aria-label="Menüyü aç" aria-expanded="false">
           <span class="block w-full h-0.5 bg-gray-700 rounded transition-all duration-300" id="bar1"></span>
           <span class="block w-full h-0.5 bg-gray-700 rounded transition-all duration-300" id="bar2"></span>
@@ -133,8 +60,6 @@
         </button>
       </div>
     </div>
-
-    <!-- Mobile menu -->
     <div id="mobile-menu" class="md:hidden bg-white border-t border-gray-100">
       <div class="px-5 py-4 flex flex-col gap-1">
         <a href="solutions.html" class="px-4 py-3 rounded-xl text-sm font-medium text-gray-700 hover:bg-brand-50 hover:text-brand-600 transition-colors">Çözümler</a>
@@ -145,25 +70,21 @@
 
   <main>
     <!-- HERO -->
-    <section class="hero-bg pt-32 pb-24 px-5 sm:px-8" aria-labelledby="hero-heading">
+    <section class="hero-bg pt-32 pb-24 md:pt-44 md:pb-36 lg:pt-52 lg:pb-44 px-5 sm:px-8" aria-labelledby="hero-heading">
       <div class="max-w-container mx-auto text-center">
-        <!-- Badge -->
         <div class="fade-up inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/70 border border-brand-100 text-xs font-medium text-brand-600 mb-8 shadow-sm" style="font-weight:600;letter-spacing:0.02em">
           <svg class="w-3.5 h-3.5 text-brand-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
           Öğrenci Girişimi · Sosyal Etki
         </div>
-
-        <h1 id="hero-heading" class="fade-up delay-1 font-display font-800 text-4xl sm:text-5xl md:text-6xl text-gray-900 leading-tight mb-6 max-w-3xl mx-auto" style="font-weight:800;line-height:1.1">
+        <h1 id="hero-heading" class="fade-up delay-1 font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-gray-900 mb-6 max-w-4xl mx-auto" style="font-weight:800;line-height:1.05">
           Erişilebilirlik İçin<br/>
           <span class="gradient-text">Mühendislik Çözümleri</span>
         </h1>
-
-        <p class="fade-up delay-2 text-base sm:text-lg text-gray-600 max-w-2xl mx-auto mb-10 leading-relaxed">
+        <p class="fade-up delay-2 text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 max-w-2xl lg:max-w-3xl mx-auto mb-10 leading-relaxed">
           Fiziksel engelli bireylerin teknolojiye erişimini artırmak için yapay zeka, bilgisayarlı görü ve düşük maliyetli donanım çözümleri geliştiriyoruz.
         </p>
-
         <div class="fade-up delay-3">
-          <a href="solutions.html" class="btn-primary inline-flex items-center gap-2.5 px-8 py-4 rounded-full text-white font-display font-semibold text-base shadow-lg" style="font-weight:600">
+          <a href="solutions.html" class="btn-primary inline-flex items-center gap-2.5 px-8 md:px-10 py-4 md:py-5 rounded-full text-white font-display font-semibold text-base md:text-lg shadow-lg" style="font-weight:600">
             Çözümlerimizi Keşfedin
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
           </a>
@@ -174,29 +95,20 @@
     <!-- PROBLEM -->
     <section class="py-20 px-5 sm:px-8 bg-white" aria-labelledby="problem-heading">
       <div class="max-w-container mx-auto">
-        <div class="max-w-2xl mx-auto bg-orange-50 rounded-3xl p-8 sm:p-10 border border-orange-100">
+        <div class="max-w-2xl lg:max-w-3xl mx-auto bg-orange-50 rounded-3xl p-8 sm:p-10 border border-orange-100">
           <div class="flex items-start gap-5">
             <div class="flex-shrink-0 w-12 h-12 rounded-2xl bg-red-500 flex items-center justify-center shadow-md" aria-hidden="true">
               <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
             </div>
             <div>
-              <h2 id="problem-heading" class="font-display font-700 text-2xl text-gray-900 mb-4" style="font-weight:700">Sorun</h2>
-              <p class="text-gray-600 leading-relaxed mb-5">
+              <h2 id="problem-heading" class="font-display text-2xl md:text-3xl lg:text-4xl text-gray-900 mb-4" style="font-weight:700">Sorun</h2>
+              <p class="text-gray-600 text-base md:text-lg leading-relaxed mb-5">
                 Yardımcı teknolojiler çoğu zaman yüksek maliyetli ve erişilmesi zordur. Birçok fiziksel engelli birey, teknolojik imkanlara ekonomik veya yapısal engeller nedeniyle ulaşamamaktadır.
               </p>
               <ul class="space-y-2.5" role="list">
-                <li class="flex items-center gap-3 text-sm text-gray-700">
-                  <span class="w-2 h-2 rounded-full bg-red-400 flex-shrink-0" aria-hidden="true"></span>
-                  Yüksek maliyet ve ekonomik erişim engelleri
-                </li>
-                <li class="flex items-center gap-3 text-sm text-gray-700">
-                  <span class="w-2 h-2 rounded-full bg-red-400 flex-shrink-0" aria-hidden="true"></span>
-                  Karmaşık, kullanıcı dostu olmayan arayüzler
-                </li>
-                <li class="flex items-center gap-3 text-sm text-gray-700">
-                  <span class="w-2 h-2 rounded-full bg-red-400 flex-shrink-0" aria-hidden="true"></span>
-                  Güncel teknolojiyi yansıtmayan çözümler
-                </li>
+                <li class="flex items-center gap-3 text-sm md:text-base text-gray-700"><span class="w-2 h-2 rounded-full bg-red-400 flex-shrink-0"></span>Yüksek maliyet ve ekonomik erişim engelleri</li>
+                <li class="flex items-center gap-3 text-sm md:text-base text-gray-700"><span class="w-2 h-2 rounded-full bg-red-400 flex-shrink-0"></span>Karmaşık, kullanıcı dostu olmayan arayüzler</li>
+                <li class="flex items-center gap-3 text-sm md:text-base text-gray-700"><span class="w-2 h-2 rounded-full bg-red-400 flex-shrink-0"></span>Güncel teknolojiyi yansıtmayan çözümler</li>
               </ul>
             </div>
           </div>
@@ -204,14 +116,14 @@
       </div>
     </section>
 
-    <!-- AMACIMIZ / MİSYON -->
+    <!-- AMACIMIZ -->
     <section class="py-20 px-5 sm:px-8 section-pattern" aria-labelledby="mission-heading">
       <div class="max-w-container mx-auto text-center">
         <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-brand-600 shadow-lg mb-6" aria-hidden="true">
           <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke-width="2"/><circle cx="12" cy="12" r="4" stroke-width="2"/><path stroke-linecap="round" stroke-width="2" d="M12 2v2m0 16v2M2 12h2m16 0h2"/></svg>
         </div>
-        <h2 id="mission-heading" class="font-display font-700 text-3xl sm:text-4xl text-gray-900 mb-6" style="font-weight:700">Amacımız</h2>
-        <p class="text-gray-600 text-lg max-w-2xl mx-auto leading-relaxed">
+        <h2 id="mission-heading" class="font-display text-3xl sm:text-4xl md:text-5xl text-gray-900 mb-6" style="font-weight:700">Amacımız</h2>
+        <p class="text-gray-600 text-lg md:text-xl lg:text-2xl max-w-2xl lg:max-w-3xl mx-auto leading-relaxed">
           <span class="text-brand-600 font-semibold">Düşük maliyetli</span> ve <span class="text-accent font-semibold">erişilebilir</span> mühendislik çözümleri geliştirerek fiziksel engelli bireylerin teknolojiye eşit erişimini sağlamak.
         </p>
       </div>
@@ -221,97 +133,77 @@
     <section class="py-20 px-5 sm:px-8 bg-white" aria-labelledby="approach-heading">
       <div class="max-w-container mx-auto">
         <div class="text-center mb-14">
-          <h2 id="approach-heading" class="font-display font-700 text-3xl sm:text-4xl text-gray-900 mb-4" style="font-weight:700">Yaklaşımımız</h2>
-          <p class="text-gray-500 max-w-xl mx-auto">Yapay zeka ve modern mühendislikle geliştirdiğimiz erişilebilir teknolojiler</p>
+          <h2 id="approach-heading" class="font-display text-3xl sm:text-4xl md:text-5xl text-gray-900 mb-4" style="font-weight:700">Yaklaşımımız</h2>
+          <p class="text-gray-500 text-base md:text-lg max-w-xl lg:max-w-2xl mx-auto">Yapay zeka ve modern mühendislikle geliştirdiğimiz erişilebilir teknolojiler</p>
         </div>
-
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          <!-- Card 1 -->
           <div class="card-hover bg-white border border-gray-100 rounded-2xl p-6 shadow-sm">
             <div class="w-11 h-11 rounded-xl bg-brand-50 flex items-center justify-center mb-4" aria-hidden="true">
               <svg class="w-5 h-5 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
             </div>
-            <h3 class="font-display font-600 text-gray-900 text-sm mb-2" style="font-weight:600">Yapay Zeka & Bilgisayarlı Görü</h3>
-            <p class="text-xs text-gray-500 leading-relaxed">Göz takibi ve hareket tanıma tabanlı erişilebilir kontrol sistemleri</p>
+            <h3 class="font-display text-sm md:text-base text-gray-900 mb-2" style="font-weight:600">Yapay Zeka &amp; Bilgisayarlı Görü</h3>
+            <p class="text-xs md:text-sm text-gray-500 leading-relaxed">Göz takibi ve hareket tanıma tabanlı erişilebilir kontrol sistemleri</p>
           </div>
-
-          <!-- Card 2 -->
           <div class="card-hover bg-white border border-gray-100 rounded-2xl p-6 shadow-sm">
             <div class="w-11 h-11 rounded-xl bg-green-50 flex items-center justify-center mb-4" aria-hidden="true">
               <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
             </div>
-            <h3 class="font-display font-600 text-gray-900 text-sm mb-2" style="font-weight:600">Açık Kaynak Donanım</h3>
-            <p class="text-xs text-gray-500 leading-relaxed">Düşük maliyetli, kendin yap yardımcı teknoloji tasarımları</p>
+            <h3 class="font-display text-sm md:text-base text-gray-900 mb-2" style="font-weight:600">Açık Kaynak Donanım</h3>
+            <p class="text-xs md:text-sm text-gray-500 leading-relaxed">Düşük maliyetli, kendin yap yardımcı teknoloji tasarımları</p>
           </div>
-
-          <!-- Card 3 -->
           <div class="card-hover bg-white border border-gray-100 rounded-2xl p-6 shadow-sm">
             <div class="w-11 h-11 rounded-xl bg-purple-50 flex items-center justify-center mb-4" aria-hidden="true">
               <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
             </div>
-            <h3 class="font-display font-600 text-gray-900 text-sm mb-2" style="font-weight:600">Kullanıcı Odaklı Geliştirme</h3>
-            <p class="text-xs text-gray-500 leading-relaxed">Gerçek kullanıcı ihtiyaçlarından doğan, birlikte tasarlanan çözümler</p>
+            <h3 class="font-display text-sm md:text-base text-gray-900 mb-2" style="font-weight:600">Kullanıcı Odaklı Geliştirme</h3>
+            <p class="text-xs md:text-sm text-gray-500 leading-relaxed">Gerçek kullanıcı ihtiyaçlarından doğan, birlikte tasarlanan çözümler</p>
           </div>
-
-          <!-- Card 4 -->
           <div class="card-hover bg-white border border-gray-100 rounded-2xl p-6 shadow-sm">
             <div class="w-11 h-11 rounded-xl bg-cyan-50 flex items-center justify-center mb-4" aria-hidden="true">
               <svg class="w-5 h-5 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
             </div>
-            <h3 class="font-display font-600 text-gray-900 text-sm mb-2" style="font-weight:600">Araştırma Temelli</h3>
-            <p class="text-xs text-gray-500 leading-relaxed">Akademik araştırma ve sürekli geliştirme odaklı mühendislik süreci</p>
+            <h3 class="font-display text-sm md:text-base text-gray-900 mb-2" style="font-weight:600">Araştırma Temelli</h3>
+            <p class="text-xs md:text-sm text-gray-500 leading-relaxed">Akademik araştırma ve sürekli geliştirme odaklı mühendislik süreci</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ETKİ / VISION -->
+    <!-- ETKİ -->
     <section class="py-20 px-5 sm:px-8 bg-gradient-to-br from-slate-50 to-blue-50" aria-labelledby="impact-heading">
       <div class="max-w-container mx-auto">
         <div class="text-center mb-14">
-          <h2 id="impact-heading" class="font-display font-700 text-3xl sm:text-4xl text-gray-900 mb-4" style="font-weight:700">Hedeflediğimiz Etki</h2>
-          <p class="text-gray-500 max-w-xl mx-auto">Teknolojinin yalnızca erişebilenler için değil, herkes için dönüştürücü bir güç olmasını hedefliyoruz.</p>
+          <h2 id="impact-heading" class="font-display text-3xl sm:text-4xl md:text-5xl text-gray-900 mb-4" style="font-weight:700">Hedeflediğimiz Etki</h2>
+          <p class="text-gray-500 text-base md:text-lg max-w-xl lg:max-w-2xl mx-auto">Teknolojinin yalnızca erişebilenler için değil, herkes için dönüştürücü bir güç olmasını hedefliyoruz.</p>
         </div>
-
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-3xl mx-auto">
           <div class="card-hover bg-white rounded-2xl p-7 border border-gray-100 shadow-sm">
             <div class="flex items-center gap-3 mb-3">
-              <div class="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center" aria-hidden="true">
-                <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
-              </div>
-              <h3 class="font-display font-600 text-gray-900" style="font-weight:600">Topluluk Odaklı</h3>
+              <div class="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center" aria-hidden="true"><svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg></div>
+              <h3 class="font-display text-gray-900 md:text-lg" style="font-weight:600">Topluluk Odaklı</h3>
             </div>
-            <p class="text-sm text-gray-500 leading-relaxed">Açık kaynak yaklaşımımızla global bir topluluk oluşturuyor, bilgiyi paylaşıyor ve birlikte büyüyoruz.</p>
+            <p class="text-sm md:text-base text-gray-500 leading-relaxed">Açık kaynak yaklaşımımızla global bir topluluk oluşturuyor, bilgiyi paylaşıyor ve birlikte büyüyoruz.</p>
           </div>
-
           <div class="card-hover bg-white rounded-2xl p-7 border border-gray-100 shadow-sm">
             <div class="flex items-center gap-3 mb-3">
-              <div class="w-10 h-10 rounded-xl bg-purple-100 flex items-center justify-center" aria-hidden="true">
-                <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
-              </div>
-              <h3 class="font-display font-600 text-gray-900" style="font-weight:600">Sürekli İnovasyon</h3>
+              <div class="w-10 h-10 rounded-xl bg-purple-100 flex items-center justify-center" aria-hidden="true"><svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg></div>
+              <h3 class="font-display text-gray-900 md:text-lg" style="font-weight:600">Sürekli İnovasyon</h3>
             </div>
-            <p class="text-sm text-gray-500 leading-relaxed">En yeni yapay zeka ve mühendislik teknolojilerini erişilebilirlik alanına taşıyarak fark yaratıyoruz.</p>
+            <p class="text-sm md:text-base text-gray-500 leading-relaxed">En yeni yapay zeka ve mühendislik teknolojilerini erişilebilirlik alanına taşıyarak fark yaratıyoruz.</p>
           </div>
-
           <div class="card-hover bg-white rounded-2xl p-7 border border-gray-100 shadow-sm">
             <div class="flex items-center gap-3 mb-3">
-              <div class="w-10 h-10 rounded-xl bg-pink-100 flex items-center justify-center" aria-hidden="true">
-                <svg class="w-5 h-5 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
-              </div>
-              <h3 class="font-display font-600 text-gray-900" style="font-weight:600">İnsan Merkezli</h3>
+              <div class="w-10 h-10 rounded-xl bg-pink-100 flex items-center justify-center" aria-hidden="true"><svg class="w-5 h-5 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg></div>
+              <h3 class="font-display text-gray-900 md:text-lg" style="font-weight:600">İnsan Merkezli</h3>
             </div>
-            <p class="text-sm text-gray-500 leading-relaxed">Her çözümümüzü gerçek kullanıcı ihtiyaçlarını dinleyerek ve onlarla birlikte tasarlayarak geliştiriyoruz.</p>
+            <p class="text-sm md:text-base text-gray-500 leading-relaxed">Her çözümümüzü gerçek kullanıcı ihtiyaçlarını dinleyerek ve onlarla birlikte tasarlayarak geliştiriyoruz.</p>
           </div>
-
           <div class="card-hover bg-white rounded-2xl p-7 border border-gray-100 shadow-sm">
             <div class="flex items-center gap-3 mb-3">
-              <div class="w-10 h-10 rounded-xl bg-cyan-100 flex items-center justify-center" aria-hidden="true">
-                <svg class="w-5 h-5 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-              </div>
-              <h3 class="font-display font-600 text-gray-900" style="font-weight:600">Erişilebilir Gelecek</h3>
+              <div class="w-10 h-10 rounded-xl bg-cyan-100 flex items-center justify-center" aria-hidden="true"><svg class="w-5 h-5 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+              <h3 class="font-display text-gray-900 md:text-lg" style="font-weight:600">Erişilebilir Gelecek</h3>
             </div>
-            <p class="text-sm text-gray-500 leading-relaxed">Teknolojinin herkes için erişilebilir olduğu, engellerin kalmadığı bir gelecek inşa ediyoruz.</p>
+            <p class="text-sm md:text-base text-gray-500 leading-relaxed">Teknolojinin herkes için erişilebilir olduğu, engellerin kalmadığı bir gelecek inşa ediyoruz.</p>
           </div>
         </div>
       </div>
@@ -321,25 +213,19 @@
     <section class="py-16 px-5 sm:px-8 bg-white" aria-labelledby="cta-heading">
       <div class="max-w-container mx-auto">
         <div class="cta-gradient rounded-3xl p-10 sm:p-14 text-center text-white relative overflow-hidden">
-          <!-- Decorative circles -->
           <div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2" aria-hidden="true"></div>
           <div class="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full translate-y-1/2 -translate-x-1/2" aria-hidden="true"></div>
-
           <div class="relative">
-            <h2 id="cta-heading" class="font-display font-700 text-2xl sm:text-3xl md:text-4xl mb-5" style="font-weight:700">
-              Birlikte Daha Erişilebilir Bir Gelecek
-            </h2>
-            <p class="text-white/80 max-w-lg mx-auto mb-8 text-base">
+            <h2 id="cta-heading" class="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-5" style="font-weight:700">Birlikte Daha Erişilebilir Bir Gelecek</h2>
+            <p class="text-white/80 max-w-lg lg:max-w-2xl mx-auto mb-8 text-base md:text-lg lg:text-xl">
               Projelerimize katkıda bulunmak, iş birliği yapmak veya daha fazla bilgi almak için bizimle iletişime geçin.
             </p>
             <div class="flex flex-wrap items-center justify-center gap-4">
-              <a href="about.html#contact" class="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-white text-brand-600 font-display font-semibold text-sm hover:bg-white/90 transition-all hover:-translate-y-0.5 shadow-lg" style="font-weight:600">
+              <a href="about.html#contact" class="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-white text-brand-600 font-display font-semibold text-sm md:text-base hover:bg-white/90 transition-all hover:-translate-y-0.5 shadow-lg" style="font-weight:600">
                 İletişime Geç
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
               </a>
-              <a href="about.html" class="inline-flex items-center gap-2 px-8 py-3.5 rounded-full border border-white/40 text-white font-display font-semibold text-sm hover:bg-white/10 transition-all" style="font-weight:600">
-                Hakkımızda
-              </a>
+              <a href="about.html" class="inline-flex items-center gap-2 px-8 py-3.5 rounded-full border border-white/40 text-white font-display font-semibold text-sm md:text-base hover:bg-white/10 transition-all" style="font-weight:600">Hakkımızda</a>
             </div>
           </div>
         </div>
@@ -347,49 +233,41 @@
     </section>
   </main>
 
-  <!-- FOOTER -->
   <footer class="bg-gray-900 text-gray-400 py-10 px-5 sm:px-8">
     <div class="max-w-container mx-auto">
       <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
         <div>
-          <p class="font-display font-700 text-white text-base mb-1" style="font-weight:700">NoBarrierTech</p>
+          <p class="font-display text-white text-base mb-1" style="font-weight:700">NoBarrierTech</p>
           <p class="text-xs text-gray-500">Engelsiz Teknoloji · Herkes İçin Erişilebilir Çözümler</p>
         </div>
-
-        <div class="flex items-center gap-5 mt-4 sm:mt-0">
-          <a href="mailto:iletisim@nobarriertech.com" class="flex items-center gap-2 text-xs text-gray-400 hover:text-white transition-colors" aria-label="E-posta: iletisim@nobarriertech.com">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+        <div class="flex items-center gap-5">
+          <a href="mailto:iletisim@nobarriertech.com" class="flex items-center gap-2 text-xs text-gray-400 hover:text-white transition-colors" aria-label="E-posta">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
             iletisim@nobarriertech.com
           </a>
           <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors" aria-label="LinkedIn">
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
           </a>
           <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors" aria-label="GitHub">
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
           </a>
         </div>
       </div>
-
-      <div class="mt-8 pt-6 border-t border-gray-800 text-center text-xs text-gray-600">
-        © 2026 NoBarrierTech. Tüm hakları saklıdır.
-      </div>
+      <div class="mt-8 pt-6 border-t border-gray-800 text-center text-xs text-gray-600">© 2026 NoBarrierTech. Tüm hakları saklıdır.</div>
     </div>
   </footer>
 
   <script>
-    // Hamburger menu toggle
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobile-menu');
     const bar1 = document.getElementById('bar1');
     const bar2 = document.getElementById('bar2');
     const bar3 = document.getElementById('bar3');
     let isOpen = false;
-
-    hamburger.addEventListener('click', () => {
+    hamburger.addEventListener('click', function() {
       isOpen = !isOpen;
       hamburger.setAttribute('aria-expanded', isOpen);
       mobileMenu.classList.toggle('open', isOpen);
-
       if (isOpen) {
         bar1.style.transform = 'translateY(8px) rotate(45deg)';
         bar2.style.opacity = '0';
@@ -402,10 +280,8 @@
         bar3.style.width = '';
       }
     });
-
-    // Close menu on link click
-    mobileMenu.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
+    mobileMenu.querySelectorAll('a').forEach(function(link) {
+      link.addEventListener('click', function() {
         isOpen = false;
         hamburger.setAttribute('aria-expanded', false);
         mobileMenu.classList.remove('open');

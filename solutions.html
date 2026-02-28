@@ -13,148 +13,76 @@
     tailwind.config = {
       theme: {
         extend: {
-          fontFamily: {
-            display: ['Sora', 'sans-serif'],
-            body: ['DM Sans', 'sans-serif'],
-          },
-          colors: {
-            brand: { 50: '#eef2ff', 100: '#e0e7ff', 500: '#6366f1', 600: '#4f46e5', 700: '#4338ca', 900: '#1e1b4b' },
-            accent: '#06b6d4',
-          },
-          maxWidth: { container: '1200px' },
-        },
-      },
+          fontFamily: { display:['Sora','sans-serif'], body:['DM Sans','sans-serif'] },
+          colors: { brand:{50:'#eef2ff',100:'#e0e7ff',500:'#6366f1',600:'#4f46e5',700:'#4338ca',900:'#1e1b4b'}, accent:'#06b6d4' },
+          maxWidth: { container:'1200px' }
+        }
+      }
     };
   </script>
   <style>
-    * { scroll-behavior: smooth; }
-    body { font-family: 'DM Sans', sans-serif; }
-    h1,h2,h3,.font-display { font-family: 'Sora', sans-serif; }
-
-    /* Navbar */
-    nav { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
-    #mobile-menu { transition: max-height 0.3s ease, opacity 0.3s ease; max-height: 0; overflow: hidden; opacity: 0; }
-    #mobile-menu.open { max-height: 300px; opacity: 1; }
-
-    /* Hero */
-    .hero-tech {
-      background: linear-gradient(135deg, #0f0c29 0%, #1a1560 35%, #302b63 65%, #4a1a6b 100%);
-      position: relative;
-      overflow: hidden;
-    }
-    .hero-tech::before {
-      content: '';
+    *{scroll-behavior:smooth}
+    body{font-family:'DM Sans',sans-serif}
+    h1,h2,h3,.font-display{font-family:'Sora',sans-serif}
+    .hero-tech{background:linear-gradient(135deg,#0f0c29 0%,#1a1560 35%,#302b63 65%,#4a1a6b 100%);position:relative;overflow:hidden}
+    .hero-tech::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(99,102,241,.15) 1px,transparent 1px);background-size:32px 32px}
+    .hero-tech::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:60px;background:linear-gradient(to bottom,transparent,#f8f9fb)}
+    .rd-badge{background:rgba(255,255,255,.1);border:1px solid rgba(255,200,50,.4);color:#fde68a}
+    .video-area{background:#0f172a;position:relative;cursor:pointer;overflow:hidden}
+    .video-play-btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:72px;height:72px;border-radius:50%;background:rgba(255,255,255,.15);border:2px solid rgba(255,255,255,.4);display:flex;align-items:center;justify-content:center;transition:all .3s ease;backdrop-filter:blur(4px)}
+    .video-area:hover .video-play-btn{background:rgba(255,255,255,.25);transform:translate(-50%,-50%) scale(1.08)}
+    .video-label{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);text-align:center;color:white}
+    /* FULLSCREEN BUTTON STYLES */
+    .fullscreen-btn {
       position: absolute;
-      inset: 0;
-      background-image: radial-gradient(circle, rgba(99,102,241,0.15) 1px, transparent 1px);
-      background-size: 32px 32px;
-    }
-    .hero-tech::after {
-      content: '';
-      position: absolute;
-      bottom: -1px;
-      left: 0;
-      right: 0;
-      height: 60px;
-      background: linear-gradient(to bottom, transparent, #f8f9fb);
-    }
-
-    /* RD badge */
-    .rd-badge {
-      background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,200,50,0.4);
-      color: #fde68a;
-    }
-
-    /* Video area */
-    .video-area {
-      background: #0f172a;
-      position: relative;
+      top: 16px;
+      right: 16px;
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
       cursor: pointer;
-      overflow: hidden;
-    }
-    .video-play-btn {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 72px;
-      height: 72px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.15);
-      border: 2px solid rgba(255,255,255,0.4);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.3s ease;
+      transition: all 0.2s ease;
       backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      z-index: 10;
+      touch-action: manipulation;
     }
-    .video-area:hover .video-play-btn { background: rgba(255,255,255,0.25); transform: translate(-50%, -50%) scale(1.08); }
-    .video-label {
-      position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      text-align: center;
-      color: white;
+    .fullscreen-btn:hover {
+      background: rgba(0, 0, 0, 0.6);
+      transform: scale(1.05);
     }
-    .video-placeholder {
-      width: 100%;
-      height: 100%;
-      min-height: 340px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    /* Card hover */
-    .card-hover { transition: transform 0.25s ease, box-shadow 0.25s ease; }
-    .card-hover:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(0,0,0,0.1); }
-
-    /* Carousel */
-    .carousel-track { transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
-    .carousel-dot { width: 8px; height: 8px; border-radius: 50%; background: #d1d5db; transition: all 0.3s ease; cursor: pointer; }
-    .carousel-dot.active { background: #4f46e5; width: 24px; border-radius: 4px; }
-    .carousel-arrow {
-      width: 40px; height: 40px; border-radius: 50%;
-      background: white; border: 1px solid #e5e7eb;
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer; transition: all 0.2s ease; box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-    .carousel-arrow:hover { background: #4f46e5; border-color: #4f46e5; color: white; transform: scale(1.05); }
-    .carousel-arrow:hover svg { stroke: white; }
-    .carousel-slide { flex-shrink: 0; width: 100%; }
-
-    /* Tech badge */
-    .tech-tag {
-      display: inline-flex; align-items: center; padding: 4px 12px;
-      border-radius: 9999px; font-size: 12px; font-weight: 500;
-      background: #eef2ff; color: #4f46e5; border: 1px solid #e0e7ff;
-    }
-
-    /* Solution card label */
-    .solution-badge {
-      display: inline-flex; align-items: center; gap: 6px;
-      padding: 4px 12px; border-radius: 9999px; font-size: 13px; font-weight: 600;
-    }
-
-    /* Fade up */
-    @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
-    .fade-up { animation: fadeUp 0.6s ease both; }
-    .delay-1 { animation-delay: 0.1s; }
-    .delay-2 { animation-delay: 0.2s; }
-    .delay-3 { animation-delay: 0.3s; }
+    .card-hover{transition:transform .25s ease,box-shadow .25s ease}
+    .card-hover:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(0,0,0,.1)}
+    .carousel-track{transition:transform .4s cubic-bezier(.25,.46,.45,.94)}
+    .carousel-dot{width:8px;height:8px;border-radius:50%;background:#d1d5db;transition:all .3s ease;cursor:pointer}
+    .carousel-dot.active{background:#4f46e5;width:24px;border-radius:4px}
+    .carousel-arrow{width:40px;height:40px;border-radius:50%;background:white;border:1px solid #e5e7eb;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s ease;box-shadow:0 2px 8px rgba(0,0,0,.1)}
+    .carousel-arrow:hover{background:#4f46e5;border-color:#4f46e5}
+    .carousel-arrow:hover svg{stroke:white}
+    .carousel-slide{flex-shrink:0;width:100%}
+    .tech-tag{display:inline-flex;align-items:center;padding:4px 12px;border-radius:9999px;font-size:12px;font-weight:500;background:#eef2ff;color:#4f46e5;border:1px solid #e0e7ff}
+    .solution-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:9999px;font-size:13px;font-weight:600}
+    nav{backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+    #mobile-menu{transition:max-height .3s ease,opacity .3s ease;max-height:0;overflow:hidden;opacity:0}
+    #mobile-menu.open{max-height:300px;opacity:1}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+    .fade-up{animation:fadeUp .6s ease both}
+    .delay-1{animation-delay:.1s}.delay-2{animation-delay:.2s}.delay-3{animation-delay:.3s}
   </style>
 </head>
 <body class="bg-[#f8f9fb] text-gray-800 antialiased">
 
-  <!-- NAVBAR -->
   <nav class="fixed top-0 left-0 right-0 z-50 bg-white/80 border-b border-gray-100/80">
     <div class="max-w-container mx-auto px-5 sm:px-8">
       <div class="flex items-center justify-between h-16">
         <a href="index.html" class="flex flex-col leading-tight group" aria-label="NoBarrierTech Ana Sayfa">
           <span class="font-display text-lg text-brand-600 group-hover:text-brand-700 transition-colors" style="font-weight:700">NoBarrierTech</span>
-          <span class="text-gray-400 font-body" style="font-size:10px;letter-spacing:0.03em">Engelsiz Teknoloji</span>
+          <span class="text-gray-400" style="font-size:10px;letter-spacing:0.03em">Engelsiz Teknoloji</span>
         </a>
         <div class="hidden md:flex items-center gap-8">
           <a href="solutions.html" class="text-sm font-semibold text-brand-600 border-b-2 border-brand-500 pb-0.5" aria-current="page">Çözümler</a>
@@ -183,70 +111,58 @@
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>
           Ar-Ge &amp; İnovasyon
         </div>
-        <h1 id="page-heading" class="fade-up delay-1 font-display text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight mb-6 max-w-4xl mx-auto" style="font-weight:800;line-height:1.1">
-          Teknolojik Çözümlerimiz
-        </h1>
-        <p class="fade-up delay-2 text-lg sm:text-xl text-white/75 max-w-2xl mx-auto mb-10 leading-relaxed">
+        <h1 id="page-heading" class="fade-up delay-1 font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-6 max-w-4xl mx-auto" style="font-weight:800;line-height:1.1">Teknolojik Çözümlerimiz</h1>
+        <p class="fade-up delay-2 text-lg sm:text-xl md:text-2xl text-white/75 max-w-2xl lg:max-w-3xl mx-auto mb-10 leading-relaxed">
           Fiziksel engelli bireylerin teknolojiye erişimini artırmak için yapay zeka, bilgisayarlı görü ve gömülü sistemler tabanlı yenilikçi çözümler geliştiriyoruz.
         </p>
         <div class="fade-up delay-3">
           <span class="rd-badge inline-flex items-center gap-2 px-5 py-3 rounded-full text-sm font-semibold">
-            <svg class="w-4 h-4 text-yellow-300" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"/></svg>
+            <svg class="w-4 h-4 text-yellow-300" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"/></svg>
             Bu projeler araştırma ve geliştirme aşamasındadır.
           </span>
         </div>
       </div>
     </section>
 
-    <!-- TECH STACK ROW -->
+    <!-- TECH STACK -->
     <section class="py-14 px-5 sm:px-8 bg-white border-b border-gray-100" aria-label="Kullandığımız teknolojiler">
       <div class="max-w-container mx-auto">
-        <h2 class="font-display text-xl font-bold text-center text-gray-900 mb-8">Kullandığımız Teknolojiler</h2>
+        <h2 class="font-display text-xl md:text-2xl lg:text-3xl font-bold text-center text-gray-900 mb-8">Kullandığımız Teknolojiler</h2>
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
           <div class="card-hover flex flex-col items-center gap-3 p-6 rounded-2xl border border-gray-100 bg-gray-50">
-            <div class="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center" aria-hidden="true">
-              <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-            </div>
+            <div class="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center"><svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div>
             <span class="text-sm font-semibold text-gray-700 text-center">Bilgisayarlı Görü</span>
           </div>
           <div class="card-hover flex flex-col items-center gap-3 p-6 rounded-2xl border border-gray-100 bg-gray-50">
-            <div class="w-12 h-12 rounded-xl bg-purple-100 flex items-center justify-center" aria-hidden="true">
-              <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2" stroke-width="2"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01"/></svg>
-            </div>
+            <div class="w-12 h-12 rounded-xl bg-purple-100 flex items-center justify-center"><svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2" stroke-width="2"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01"/></svg></div>
             <span class="text-sm font-semibold text-gray-700 text-center">Yapay Zeka</span>
           </div>
           <div class="card-hover flex flex-col items-center gap-3 p-6 rounded-2xl border border-gray-100 bg-gray-50">
-            <div class="w-12 h-12 rounded-xl bg-cyan-100 flex items-center justify-center" aria-hidden="true">
-              <svg class="w-6 h-6 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>
-            </div>
+            <div class="w-12 h-12 rounded-xl bg-cyan-100 flex items-center justify-center"><svg class="w-6 h-6 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg></div>
             <span class="text-sm font-semibold text-gray-700 text-center">Sensör Füzyonu</span>
           </div>
           <div class="card-hover flex flex-col items-center gap-3 p-6 rounded-2xl border border-gray-100 bg-gray-50">
-            <div class="w-12 h-12 rounded-xl bg-green-100 flex items-center justify-center" aria-hidden="true">
-              <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
-            </div>
+            <div class="w-12 h-12 rounded-xl bg-green-100 flex items-center justify-center"><svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg></div>
             <span class="text-sm font-semibold text-gray-700 text-center">Gömülü Sistemler</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ===== SOLUTION 1: GOZ TAKİBİ (TEXT LEFT / VIDEO RIGHT) ===== -->
+    <!-- SOLUTION 1: GOZ TAKİBİ -->
     <section class="py-16 px-5 sm:px-8" aria-labelledby="sol1-heading">
       <div class="max-w-container mx-auto">
         <div class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
           <div class="flex flex-col lg:flex-row">
-            <!-- Text -->
             <div class="flex-1 p-8 sm:p-10 lg:p-12 flex flex-col justify-center">
               <span class="solution-badge bg-blue-50 text-blue-700 border border-blue-100 mb-5 self-start">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4" stroke-width="2"/><path stroke-linecap="round" stroke-width="2" d="M2 12C4 7 7.5 4 12 4s8 5 8 8-3.5 8-8 8-10-5-10-8z"/></svg>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4" stroke-width="2"/><path stroke-linecap="round" stroke-width="2" d="M2 12C4 7 7.5 4 12 4s8 5 8 8-3.5 8-8 8-10-5-10-8z"/></svg>
                 Yapay Zeka
               </span>
-              <h2 id="sol1-heading" class="font-display text-3xl sm:text-4xl font-bold text-gray-900 mb-4" style="font-weight:700">Webcam ile Göz Takibi Sistemi</h2>
-              <p class="text-gray-600 text-base sm:text-lg leading-relaxed mb-7">
+              <h2 id="sol1-heading" class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4" style="font-weight:700">Webcam ile Göz Takibi Sistemi</h2>
+              <p class="text-gray-600 text-base sm:text-lg md:text-xl leading-relaxed mb-7">
                 Bilgisayarlı görü ve yapay zeka tabanlı göz takibi sistemi ile kullanıcıların yalnızca göz hareketleriyle bilgisayarı kontrol edebilmesini sağlayan bir yazılım geliştirmeyi hedefliyoruz.
               </p>
-
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-7">
                 <div class="bg-red-50 rounded-2xl p-4 border border-red-100">
                   <p class="font-semibold text-red-600 text-sm mb-1">Problem</p>
@@ -257,32 +173,32 @@
                   <p class="text-emerald-700 text-sm leading-relaxed">Standart webcam ile göz hareketlerini analiz ederek fare imlecini kontrol eden yapay zeka sistemi.</p>
                 </div>
               </div>
-
               <div class="mb-6">
                 <p class="font-semibold text-gray-800 text-sm mb-3">Teknolojiler</p>
                 <div class="flex flex-wrap gap-2">
-                  <span class="tech-tag">Python</span>
-                  <span class="tech-tag">OpenCV</span>
-                  <span class="tech-tag">Computer Vision</span>
-                  <span class="tech-tag">AI Gaze Tracking</span>
+                  <span class="tech-tag">Python</span><span class="tech-tag">OpenCV</span><span class="tech-tag">Computer Vision</span><span class="tech-tag">AI Gaze Tracking</span>
                 </div>
               </div>
-
               <div>
                 <p class="font-semibold text-gray-800 text-sm mb-2">Kimler İçin?</p>
                 <ul class="space-y-1.5" role="list">
-                  <li class="flex items-center gap-2 text-sm text-gray-600"><span class="w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0" aria-hidden="true"></span>ALS, felç ve ileri düzey fiziksel engel durumları</li>
-                  <li class="flex items-center gap-2 text-sm text-gray-600"><span class="w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0" aria-hidden="true"></span>Motor fonksiyon kaybı yaşayan bireyler</li>
+                  <li class="flex items-center gap-2 text-sm text-gray-600"><span class="w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0"></span>ALS, felç ve ileri düzey fiziksel engel durumları</li>
+                  <li class="flex items-center gap-2 text-sm text-gray-600"><span class="w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0"></span>Motor fonksiyon kaybı yaşayan bireyler</li>
                 </ul>
               </div>
             </div>
-
-            <!-- Video Right -->
             <div class="lg:w-5/12 xl:w-1/2 min-h-64 lg:min-h-0" style="background:#0f172a;">
-              <div class="video-area w-full h-full min-h-72 lg:min-h-full rounded-none" id="video1-container" role="button" aria-label="Demo videosunu oynat/durdur" tabindex="0">
+              <div class="video-area w-full h-full min-h-72 lg:min-h-full" id="video1-container" role="button" aria-label="Demo videosunu oynat/durdur" tabindex="0">
                 <video id="vid1" class="w-full h-full object-cover" autoplay loop muted playsinline preload="none" style="min-height:300px;display:block;opacity:0.85">
-                  <source src="videos/eye-tracking-demo.mp4" type="video/mp4" />
+                  <source src="assets/videos/webcam-eye-movement.mp4" type="video/mp4" />
                 </video>
+
+                <button class="fullscreen-btn" aria-label="Tam ekran yap" title="Tam ekran yap">
+                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/>
+                  </svg>
+                </button>
+
                 <div class="video-play-btn" id="vid1-btn" aria-hidden="true">
                   <svg class="w-8 h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                 </div>
@@ -297,22 +213,20 @@
       </div>
     </section>
 
-    <!-- ===== SOLUTION 2: KAFA HAREKETİ (VIDEO LEFT / TEXT RIGHT) ===== -->
+    <!-- SOLUTION 2: KAFA HAREKETİ -->
     <section class="py-4 px-5 sm:px-8" aria-labelledby="sol2-heading">
       <div class="max-w-container mx-auto">
         <div class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
           <div class="flex flex-col lg:flex-row-reverse">
-            <!-- Text -->
             <div class="flex-1 p-8 sm:p-10 lg:p-12 flex flex-col justify-center">
               <span class="solution-badge bg-purple-50 text-purple-700 border border-purple-100 mb-5 self-start">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2a7 7 0 100 14A7 7 0 0012 2zM5.293 16.707A9.969 9.969 0 002 21m17-4.293A9.969 9.969 0 0122 21"/></svg>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2a7 7 0 100 14A7 7 0 0012 2zM5.293 16.707A9.969 9.969 0 002 21m17-4.293A9.969 9.969 0 0122 21"/></svg>
                 Hareket İzleme
               </span>
-              <h2 id="sol2-heading" class="font-display text-3xl sm:text-4xl font-bold text-gray-900 mb-4" style="font-weight:700">Webcam ile Kafa Hareketi Kontrolü</h2>
-              <p class="text-gray-600 text-base sm:text-lg leading-relaxed mb-7">
+              <h2 id="sol2-heading" class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4" style="font-weight:700">Webcam ile Kafa Hareketi Kontrolü</h2>
+              <p class="text-gray-600 text-base sm:text-lg md:text-xl leading-relaxed mb-7">
                 Kafa hareketlerini gerçek zamanlı analiz eden bilgisayarlı görü sistemleri ile fare ve bilgisayar kontrolü sağlanması hedeflenmektedir.
               </p>
-
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-7">
                 <div class="bg-red-50 rounded-2xl p-4 border border-red-100">
                   <p class="font-semibold text-red-600 text-sm mb-1">Problem</p>
@@ -323,31 +237,32 @@
                   <p class="text-emerald-700 text-sm leading-relaxed">Kafa hareketleri ile bilgisayar fare kontrolü sağlayan gerçek zamanlı sistem.</p>
                 </div>
               </div>
-
               <div class="mb-6">
                 <p class="font-semibold text-gray-800 text-sm mb-3">Teknolojiler</p>
                 <div class="flex flex-wrap gap-2">
-                  <span class="tech-tag">Computer Vision</span>
-                  <span class="tech-tag">Head Tracking</span>
-                  <span class="tech-tag">Real-time Detection</span>
+                  <span class="tech-tag">Computer Vision</span><span class="tech-tag">Head Tracking</span><span class="tech-tag">Real-time Detection</span>
                 </div>
               </div>
-
               <div>
                 <p class="font-semibold text-gray-800 text-sm mb-2">Kimler İçin?</p>
                 <ul class="space-y-1.5" role="list">
-                  <li class="flex items-center gap-2 text-sm text-gray-600"><span class="w-1.5 h-1.5 rounded-full bg-purple-500 flex-shrink-0" aria-hidden="true"></span>Omurilik yaralanmaları</li>
-                  <li class="flex items-center gap-2 text-sm text-gray-600"><span class="w-1.5 h-1.5 rounded-full bg-purple-500 flex-shrink-0" aria-hidden="true"></span>Ciddi motor fonksiyon kayıpları</li>
+                  <li class="flex items-center gap-2 text-sm text-gray-600"><span class="w-1.5 h-1.5 rounded-full bg-purple-500 flex-shrink-0"></span>Omurilik yaralanmaları</li>
+                  <li class="flex items-center gap-2 text-sm text-gray-600"><span class="w-1.5 h-1.5 rounded-full bg-purple-500 flex-shrink-0"></span>Ciddi motor fonksiyon kayıpları</li>
                 </ul>
               </div>
             </div>
-
-            <!-- Video Left -->
-            <div class="lg:w-5/12 xl:w-1/2" style="background: linear-gradient(135deg, #4338ca, #7c3aed);">
+            <div class="lg:w-5/12 xl:w-1/2" style="background:linear-gradient(135deg,#4338ca,#7c3aed);">
               <div class="video-area w-full h-full min-h-72 lg:min-h-full" id="video2-container" role="button" aria-label="Demo videosunu oynat/durdur" tabindex="0">
                 <video id="vid2" class="w-full h-full object-cover" autoplay loop muted playsinline preload="none" style="min-height:300px;display:block;opacity:0.7">
-                  <source src="videos/head-tracking-demo.mp4" type="video/mp4" />
+                  <source src="assets/videos/webcam-head-movement.mp4" type="video/mp4" />
                 </video>
+                
+                <button class="fullscreen-btn" aria-label="Tam ekran yap" title="Tam ekran yap">
+                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/>
+                  </svg>
+                </button>
+
                 <div class="video-play-btn" id="vid2-btn" aria-hidden="true">
                   <svg class="w-8 h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                 </div>
@@ -362,40 +277,28 @@
       </div>
     </section>
 
-    <!-- ===== SOLUTION 3: GYRO (IMAGE CAROUSEL) ===== -->
+    <!-- SOLUTION 3: GYRO -->
     <section class="py-16 px-5 sm:px-8" aria-labelledby="sol3-heading">
       <div class="max-w-container mx-auto">
-        <div class="rounded-3xl overflow-hidden shadow-sm" style="background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 50%, #0f172a 100%);">
+        <div class="rounded-3xl overflow-hidden shadow-sm" style="background:linear-gradient(135deg,#0ea5e9 0%,#0284c7 50%,#0f172a 100%);">
           <div class="flex flex-col lg:flex-row">
-            <!-- Text Left (white text on dark bg) -->
             <div class="flex-1 p-8 sm:p-10 lg:p-12 flex flex-col justify-center text-white">
-              <span class="solution-badge bg-white/10 border border-white/20 text-cyan-300 mb-5 self-start" style="font-size:13px">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><circle cx="12" cy="12" r="3" stroke-width="2"/></svg>
+              <span class="solution-badge bg-white/10 border border-white/20 text-cyan-300 mb-5 self-start">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><circle cx="12" cy="12" r="3" stroke-width="2"/></svg>
                 Gömülü Sistemler
               </span>
-              <h2 id="sol3-heading" class="font-display text-3xl sm:text-4xl font-bold mb-4" style="font-weight:700">Gyro Sensör Tabanlı Kontrol</h2>
-              <p class="text-white/75 text-base sm:text-lg leading-relaxed mb-7">
+              <h2 id="sol3-heading" class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold mb-4" style="font-weight:700">Gyro Sensör Tabanlı Kontrol</h2>
+              <p class="text-white/75 text-base sm:text-lg md:text-xl leading-relaxed mb-7">
                 Baş bölgesine yerleştirilen düşük maliyetli gyro sensörler ile kafa hareketlerinden bilgisayar kontrolü sağlamayı hedefliyoruz.
               </p>
-
               <div class="bg-white/10 rounded-2xl p-5 mb-7 border border-white/15">
                 <p class="font-semibold text-cyan-300 text-sm mb-3">Avantajları</p>
                 <ul class="space-y-2">
-                  <li class="flex items-center gap-2 text-sm text-white/85">
-                    <svg class="w-4 h-4 text-cyan-300 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"/></svg>
-                    Kamera kullanımı gerektirmez
-                  </li>
-                  <li class="flex items-center gap-2 text-sm text-white/85">
-                    <svg class="w-4 h-4 text-cyan-300 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"/></svg>
-                    Yüksek hassasiyet ve düşük gecikme
-                  </li>
-                  <li class="flex items-center gap-2 text-sm text-white/85">
-                    <svg class="w-4 h-4 text-cyan-300 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"/></svg>
-                    Taşınabilir ve düşük güç tüketimi
-                  </li>
+                  <li class="flex items-center gap-2 text-sm text-white/85"><svg class="w-4 h-4 text-cyan-300 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"/></svg>Kamera kullanımı gerektirmez</li>
+                  <li class="flex items-center gap-2 text-sm text-white/85"><svg class="w-4 h-4 text-cyan-300 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"/></svg>Yüksek hassasiyet ve düşük gecikme</li>
+                  <li class="flex items-center gap-2 text-sm text-white/85"><svg class="w-4 h-4 text-cyan-300 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"/></svg>Taşınabilir ve düşük güç tüketimi</li>
                 </ul>
               </div>
-
               <div class="mb-5">
                 <p class="font-semibold text-white/80 text-sm mb-2">Teknolojiler</p>
                 <div class="flex flex-wrap gap-2">
@@ -404,55 +307,44 @@
                   <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-white/10 text-cyan-200 border border-white/15">Embedded Systems</span>
                 </div>
               </div>
-
               <div>
                 <p class="font-semibold text-white/80 text-sm mb-1">Kimler İçin?</p>
                 <p class="text-white/60 text-sm">Kamera kullanamayan veya taşınabilir çözüm isteyen bireyler</p>
               </div>
             </div>
-
-            <!-- Carousel Right (dark panel) -->
             <div class="lg:w-5/12 xl:w-1/2 bg-gray-950 flex flex-col items-center justify-center p-8 min-h-80">
               <div class="w-full max-w-sm" id="carousel3">
                 <div class="relative overflow-hidden rounded-2xl" style="aspect-ratio:4/3">
-                  <div class="flex carousel-track" id="track3">
+                  <div class="flex carousel-track h-full" id="track3">
+                    
+                    <div class="carousel-slide flex items-center justify-center bg-gray-900 rounded-2xl overflow-hidden" style="min-height:200px">
+                      <img src="assets/images/gyro-prototype.png" alt="Gyro Sensör Prototip" class="w-full h-full object-cover" loading="lazy" />
+                    </div>
+
                     <div class="carousel-slide flex items-center justify-center bg-gray-900 rounded-2xl" style="min-height:200px">
                       <div class="text-center text-white p-6">
-                        <div class="w-20 h-20 rounded-full border-4 border-cyan-400 flex items-center justify-center mx-auto mb-4">
-                          <svg class="w-10 h-10 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>
-                        </div>
-                        <p class="font-semibold text-sm">Gyro Sensör</p>
-                        <p class="text-xs text-white/50 mt-1">IMU Teknolojisi</p>
+                        <div class="w-20 h-20 rounded-full border-4 border-cyan-400 flex items-center justify-center mx-auto mb-4"><svg class="w-10 h-10 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg></div>
+                        <p class="font-semibold text-sm">Gyro Sensör</p><p class="text-xs text-white/50 mt-1">IMU Teknolojisi</p>
                       </div>
                     </div>
                     <div class="carousel-slide flex items-center justify-center bg-gray-900 rounded-2xl" style="min-height:200px">
                       <div class="text-center text-white p-6">
-                        <div class="w-20 h-20 rounded-full border-4 border-blue-400 flex items-center justify-center mx-auto mb-4">
-                          <svg class="w-10 h-10 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><circle cx="12" cy="12" r="3" stroke-width="1.5"/></svg>
-                        </div>
-                        <p class="font-semibold text-sm">Gömülü Sistem</p>
-                        <p class="text-xs text-white/50 mt-1">Mikrodenetleyici Entegrasyonu</p>
+                        <div class="w-20 h-20 rounded-full border-4 border-blue-400 flex items-center justify-center mx-auto mb-4"><svg class="w-10 h-10 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><circle cx="12" cy="12" r="3" stroke-width="1.5"/></svg></div>
+                        <p class="font-semibold text-sm">Gömülü Sistem</p><p class="text-xs text-white/50 mt-1">Mikrodenetleyici Entegrasyonu</p>
                       </div>
                     </div>
                     <div class="carousel-slide flex items-center justify-center bg-gray-900 rounded-2xl" style="min-height:200px">
                       <div class="text-center text-white p-6">
-                        <div class="w-20 h-20 rounded-full border-4 border-green-400 flex items-center justify-center mx-auto mb-4">
-                          <svg class="w-10 h-10 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
-                        </div>
-                        <p class="font-semibold text-sm">Gerçek Zamanlı Veri</p>
-                        <p class="text-xs text-white/50 mt-1">Düşük gecikme ile analiz</p>
+                        <div class="w-20 h-20 rounded-full border-4 border-green-400 flex items-center justify-center mx-auto mb-4"><svg class="w-10 h-10 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg></div>
+                        <p class="font-semibold text-sm">Gerçek Zamanlı Veri</p><p class="text-xs text-white/50 mt-1">Düşük gecikme ile analiz</p>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div class="flex items-center justify-center gap-3 mt-5">
-                  <button class="carousel-arrow" onclick="prevSlide('carousel3')" aria-label="Önceki slayt">
-                    <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
-                  </button>
-                  <div class="flex gap-2 items-center" id="dots3" role="tablist" aria-label="Slayt göstergeleri"></div>
-                  <button class="carousel-arrow" onclick="nextSlide('carousel3')" aria-label="Sonraki slayt">
-                    <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                  </button>
+                  <button class="carousel-arrow" onclick="prevSlide('carousel3')" aria-label="Önceki slayt"><svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg></button>
+                  <div class="flex gap-2 items-center" id="dots3" role="tablist"></div>
+                  <button class="carousel-arrow" onclick="nextSlide('carousel3')" aria-label="Sonraki slayt"><svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></button>
                 </div>
               </div>
             </div>
@@ -461,88 +353,72 @@
       </div>
     </section>
 
-    <!-- ===== SOLUTION 4: SIP & PUFF (IMAGE + INFO) ===== -->
+    <!-- SOLUTION 4: SIP & PUFF -->
     <section class="py-4 px-5 sm:px-8" aria-labelledby="sol4-heading">
       <div class="max-w-container mx-auto">
         <div class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
           <div class="flex flex-col lg:flex-row-reverse">
-            <!-- Text -->
             <div class="flex-1 p-8 sm:p-10 lg:p-12 flex flex-col justify-center">
               <span class="solution-badge bg-purple-50 text-purple-700 border border-purple-100 mb-5 self-start">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/></svg>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/></svg>
                 Donanım
               </span>
-              <h2 id="sol4-heading" class="font-display text-3xl sm:text-4xl font-bold text-gray-900 mb-4" style="font-weight:700">Sip &amp; Puff – Nefes ile Kontrol</h2>
-              <p class="text-gray-600 text-base sm:text-lg leading-relaxed mb-7">
+              <h2 id="sol4-heading" class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4" style="font-weight:700">Sip &amp; Puff – Nefes ile Kontrol</h2>
+              <p class="text-gray-600 text-base sm:text-lg md:text-xl leading-relaxed mb-7">
                 Nefes algılayan düşük maliyetli basınç sensörleri ile bilgisayar kontrol sistemleri geliştirmeyi hedefliyoruz.
               </p>
-
               <div class="bg-blue-50 rounded-2xl p-5 border border-blue-100 mb-7">
                 <p class="font-semibold text-blue-800 text-sm mb-2">Nasıl Çalışır?</p>
                 <p class="text-blue-700 text-sm leading-relaxed">Nefes üfleme (puff) ve emme (sip) hareketleri algılanarak bilgisayar komutlarına dönüştürülür. Minimal motor fonksiyonuna sahip kullanıcılar için ideal çözüm.</p>
               </div>
-
               <div class="mb-6">
                 <p class="font-semibold text-gray-800 text-sm mb-3">Teknolojiler</p>
                 <div class="flex flex-wrap gap-2">
-                  <span class="tech-tag">Pressure Sensors</span>
-                  <span class="tech-tag">Embedded Hardware</span>
-                  <span class="tech-tag">Custom Input Devices</span>
+                  <span class="tech-tag">Pressure Sensors</span><span class="tech-tag">Embedded Hardware</span><span class="tech-tag">Custom Input Devices</span>
                 </div>
               </div>
-
               <div>
                 <p class="font-semibold text-gray-800 text-sm mb-2">Kimler İçin?</p>
                 <ul class="space-y-1.5" role="list">
-                  <li class="flex items-center gap-2 text-sm text-gray-600"><span class="w-1.5 h-1.5 rounded-full bg-purple-500 flex-shrink-0" aria-hidden="true"></span>Yüksek seviyeli felç ve kas kontrol kaybı</li>
-                  <li class="flex items-center gap-2 text-sm text-gray-600"><span class="w-1.5 h-1.5 rounded-full bg-purple-500 flex-shrink-0" aria-hidden="true"></span>Locked-in sendromu</li>
-                  <li class="flex items-center gap-2 text-sm text-gray-600"><span class="w-1.5 h-1.5 rounded-full bg-purple-500 flex-shrink-0" aria-hidden="true"></span>İleri ALS</li>
+                  <li class="flex items-center gap-2 text-sm text-gray-600"><span class="w-1.5 h-1.5 rounded-full bg-purple-500 flex-shrink-0"></span>Yüksek seviyeli felç ve kas kontrol kaybı</li>
+                  <li class="flex items-center gap-2 text-sm text-gray-600"><span class="w-1.5 h-1.5 rounded-full bg-purple-500 flex-shrink-0"></span>Locked-in sendromu</li>
+                  <li class="flex items-center gap-2 text-sm text-gray-600"><span class="w-1.5 h-1.5 rounded-full bg-purple-500 flex-shrink-0"></span>İleri ALS</li>
                 </ul>
               </div>
             </div>
-
-            <!-- Carousel Left (purple bg) -->
-            <div class="lg:w-5/12 xl:w-1/2 flex flex-col items-center justify-center p-8 min-h-80" style="background: linear-gradient(135deg, #5b21b6, #7c3aed);">
+            <div class="lg:w-5/12 xl:w-1/2 flex flex-col items-center justify-center p-8 min-h-80" style="background:linear-gradient(135deg,#5b21b6,#7c3aed);">
               <div class="w-full max-w-sm" id="carousel4">
                 <div class="relative overflow-hidden rounded-2xl" style="aspect-ratio:4/3">
-                  <div class="flex carousel-track" id="track4">
+                  <div class="flex carousel-track h-full" id="track4">
+
+                    <div class="carousel-slide flex items-center justify-center rounded-2xl bg-white/10 overflow-hidden" style="min-height:200px">
+                      <img src="assets/images/sip-puff-prototype.png" alt="Sip & Puff Prototip" class="w-full h-full object-cover" loading="lazy" />
+                    </div>
+
                     <div class="carousel-slide flex items-center justify-center rounded-2xl bg-white/10" style="min-height:200px">
                       <div class="text-center text-white p-6">
-                        <div class="w-20 h-20 rounded-full border-4 border-white/40 flex items-center justify-center mx-auto mb-4">
-                          <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10"/></svg>
-                        </div>
-                        <p class="font-semibold text-sm">Sip &amp; Puff</p>
-                        <p class="text-xs text-white/60 mt-1">Basınç Sensörü Sistemi</p>
+                        <div class="w-20 h-20 rounded-full border-4 border-white/40 flex items-center justify-center mx-auto mb-4"><svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10"/></svg></div>
+                        <p class="font-semibold text-sm">Sip &amp; Puff</p><p class="text-xs text-white/60 mt-1">Basınç Sensörü Sistemi</p>
                       </div>
                     </div>
                     <div class="carousel-slide flex items-center justify-center rounded-2xl bg-white/10" style="min-height:200px">
                       <div class="text-center text-white p-6">
-                        <div class="w-20 h-20 rounded-full border-4 border-purple-300 flex items-center justify-center mx-auto mb-4">
-                          <svg class="w-10 h-10 text-purple-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-                        </div>
-                        <p class="font-semibold text-sm">Düşük Gecikme</p>
-                        <p class="text-xs text-white/60 mt-1">Anlık komut iletimi</p>
+                        <div class="w-20 h-20 rounded-full border-4 border-purple-300 flex items-center justify-center mx-auto mb-4"><svg class="w-10 h-10 text-purple-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div>
+                        <p class="font-semibold text-sm">Düşük Gecikme</p><p class="text-xs text-white/60 mt-1">Anlık komut iletimi</p>
                       </div>
                     </div>
                     <div class="carousel-slide flex items-center justify-center rounded-2xl bg-white/10" style="min-height:200px">
                       <div class="text-center text-white p-6">
-                        <div class="w-20 h-20 rounded-full border-4 border-pink-300 flex items-center justify-center mx-auto mb-4">
-                          <svg class="w-10 h-10 text-pink-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
-                        </div>
-                        <p class="font-semibold text-sm">Erişilebilir Tasarım</p>
-                        <p class="text-xs text-white/60 mt-1">Herkes için uyarlanabilir</p>
+                        <div class="w-20 h-20 rounded-full border-4 border-pink-300 flex items-center justify-center mx-auto mb-4"><svg class="w-10 h-10 text-pink-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg></div>
+                        <p class="font-semibold text-sm">Erişilebilir Tasarım</p><p class="text-xs text-white/60 mt-1">Herkes için uyarlanabilir</p>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div class="flex items-center justify-center gap-3 mt-5">
-                  <button class="carousel-arrow" onclick="prevSlide('carousel4')" aria-label="Önceki slayt" style="background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.2)">
-                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
-                  </button>
-                  <div class="flex gap-2 items-center" id="dots4" role="tablist" aria-label="Slayt göstergeleri"></div>
-                  <button class="carousel-arrow" onclick="nextSlide('carousel4')" aria-label="Sonraki slayt" style="background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.2)">
-                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                  </button>
+                  <button class="carousel-arrow" onclick="prevSlide('carousel4')" aria-label="Önceki slayt" style="background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.2)"><svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg></button>
+                  <div class="flex gap-2 items-center" id="dots4" role="tablist"></div>
+                  <button class="carousel-arrow" onclick="nextSlide('carousel4')" aria-label="Sonraki slayt" style="background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.2)"><svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></button>
                 </div>
               </div>
             </div>
@@ -551,86 +427,53 @@
       </div>
     </section>
 
-    <!-- ===== SOLUTION 5: DIY KIT (FULL WIDTH GRADIENT) ===== -->
+    <!-- SOLUTION 5: DIY -->
     <section class="py-16 px-5 sm:px-8" aria-labelledby="sol5-heading">
       <div class="max-w-container mx-auto">
-        <div class="rounded-3xl overflow-hidden" style="background: linear-gradient(135deg, #f97316 0%, #ef4444 40%, #ec4899 100%);">
+        <div class="rounded-3xl overflow-hidden" style="background:linear-gradient(135deg,#f97316 0%,#ef4444 40%,#ec4899 100%);">
           <div class="p-8 sm:p-12 lg:p-16 text-white text-center">
             <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/15 border border-white/20 text-sm font-semibold mb-8">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"/></svg>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"/></svg>
               Açık Kaynak
             </span>
-            <h2 id="sol5-heading" class="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold mb-5" style="font-weight:800">DIY Yardımcı Donanım Kitleri</h2>
-            <p class="text-white/80 text-lg max-w-2xl mx-auto mb-12 leading-relaxed">
+            <h2 id="sol5-heading" class="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-5" style="font-weight:800">DIY Yardımcı Donanım Kitleri</h2>
+            <p class="text-white/80 text-lg md:text-xl lg:text-2xl max-w-2xl mx-auto mb-12 leading-relaxed">
               Açık kaynak ve düşük maliyetli donanım kitleri ile bireylerin kendi erişilebilirlik çözümlerini oluşturabilmesini hedefliyoruz.
             </p>
-
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
               <div class="bg-white/15 rounded-2xl p-6 text-left border border-white/10 hover:bg-white/20 transition-colors">
-                <div class="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center mb-4" aria-hidden="true">
-                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                </div>
+                <div class="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center mb-4"><svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
                 <p class="font-semibold text-white mb-1">Düşük Maliyet</p>
                 <p class="text-white/65 text-sm">Ticari ürünlerin bir kısmı fiyatına erişilebilir çözümler</p>
               </div>
               <div class="bg-white/15 rounded-2xl p-6 text-left border border-white/10 hover:bg-white/20 transition-colors">
-                <div class="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center mb-4" aria-hidden="true">
-                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
-                </div>
+                <div class="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center mb-4"><svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg></div>
                 <p class="font-semibold text-white mb-1">Açık Kaynak</p>
                 <p class="text-white/65 text-sm">Tüm tasarımlar ve kodlar GitHub'da paylaşımlı</p>
               </div>
               <div class="bg-white/15 rounded-2xl p-6 text-left border border-white/10 hover:bg-white/20 transition-colors">
-                <div class="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center mb-4" aria-hidden="true">
-                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z"/></svg>
-                </div>
+                <div class="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center mb-4"><svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z"/></svg></div>
                 <p class="font-semibold text-white mb-1">Özelleştirilebilir</p>
                 <p class="text-white/65 text-sm">Kişisel ihtiyaçlara göre uyarlanabilir modüler yapı</p>
               </div>
               <div class="bg-white/15 rounded-2xl p-6 text-left border border-white/10 hover:bg-white/20 transition-colors">
-                <div class="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center mb-4" aria-hidden="true">
-                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                </div>
+                <div class="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center mb-4"><svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div>
                 <p class="font-semibold text-white mb-1">Topluluk</p>
                 <p class="text-white/65 text-sm">Global maker topluluğu desteği ve iş birliği</p>
               </div>
             </div>
-
-            <!-- DIY Carousel -->
             <div class="max-w-lg mx-auto" id="carousel5">
               <div class="relative overflow-hidden rounded-2xl" style="aspect-ratio:16/7;background:rgba(0,0,0,0.2)">
                 <div class="flex carousel-track h-full" id="track5">
-                  <div class="carousel-slide flex items-center justify-center" style="min-height:150px">
-                    <div class="text-center text-white p-6">
-                      <div class="text-5xl mb-3">🔧</div>
-                      <p class="font-semibold">Arduino Kitleri</p>
-                      <p class="text-sm text-white/60 mt-1">Erişilebilir donanım çözümleri</p>
-                    </div>
-                  </div>
-                  <div class="carousel-slide flex items-center justify-center" style="min-height:150px">
-                    <div class="text-center text-white p-6">
-                      <div class="text-5xl mb-3">🖨️</div>
-                      <p class="font-semibold">3D Baskı Tasarımları</p>
-                      <p class="text-sm text-white/60 mt-1">Özelleştirilebilir kasalar ve adaptörler</p>
-                    </div>
-                  </div>
-                  <div class="carousel-slide flex items-center justify-center" style="min-height:150px">
-                    <div class="text-center text-white p-6">
-                      <div class="text-5xl mb-3">📦</div>
-                      <p class="font-semibold">Açık Kaynak Şemalar</p>
-                      <p class="text-sm text-white/60 mt-1">GitHub'da ücretsiz paylaşımlı</p>
-                    </div>
-                  </div>
+                  <div class="carousel-slide flex items-center justify-center" style="min-height:150px"><div class="text-center text-white p-6"><div class="text-5xl mb-3">🔧</div><p class="font-semibold">Arduino Kitleri</p><p class="text-sm text-white/60 mt-1">Erişilebilir donanım çözümleri</p></div></div>
+                  <div class="carousel-slide flex items-center justify-center" style="min-height:150px"><div class="text-center text-white p-6"><div class="text-5xl mb-3">🖨️</div><p class="font-semibold">3D Baskı Tasarımları</p><p class="text-sm text-white/60 mt-1">Özelleştirilebilir kasalar ve adaptörler</p></div></div>
+                  <div class="carousel-slide flex items-center justify-center" style="min-height:150px"><div class="text-center text-white p-6"><div class="text-5xl mb-3">📦</div><p class="font-semibold">Açık Kaynak Şemalar</p><p class="text-sm text-white/60 mt-1">GitHub'da ücretsiz paylaşımlı</p></div></div>
                 </div>
               </div>
               <div class="flex items-center justify-center gap-3 mt-4">
-                <button class="carousel-arrow" onclick="prevSlide('carousel5')" aria-label="Önceki slayt" style="background:rgba(255,255,255,0.2);border-color:rgba(255,255,255,0.3)">
-                  <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
-                </button>
-                <div class="flex gap-2 items-center" id="dots5" role="tablist" aria-label="Slayt göstergeleri"></div>
-                <button class="carousel-arrow" onclick="nextSlide('carousel5')" aria-label="Sonraki slayt" style="background:rgba(255,255,255,0.2);border-color:rgba(255,255,255,0.3)">
-                  <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                </button>
+                <button class="carousel-arrow" onclick="prevSlide('carousel5')" aria-label="Önceki slayt" style="background:rgba(255,255,255,0.2);border-color:rgba(255,255,255,0.3)"><svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg></button>
+                <div class="flex gap-2 items-center" id="dots5" role="tablist"></div>
+                <button class="carousel-arrow" onclick="nextSlide('carousel5')" aria-label="Sonraki slayt" style="background:rgba(255,255,255,0.2);border-color:rgba(255,255,255,0.3)"><svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></button>
               </div>
             </div>
           </div>
@@ -641,50 +484,29 @@
     <!-- TECH SPECS -->
     <section class="py-20 px-5 sm:px-8 bg-gray-900" aria-labelledby="specs-heading">
       <div class="max-w-container mx-auto">
-        <h2 id="specs-heading" class="font-display text-3xl sm:text-4xl font-bold text-white text-center mb-14" style="font-weight:700">Teknik Özellikler ve Standartlar</h2>
+        <h2 id="specs-heading" class="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-white text-center mb-14" style="font-weight:700">Teknik Özellikler ve Standartlar</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
           <div class="flex items-start gap-4">
-            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-600 to-accent flex items-center justify-center flex-shrink-0" aria-hidden="true">
-              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-            </div>
-            <div>
-              <p class="font-semibold text-white text-base mb-1">Açık Kaynak</p>
-              <p class="text-gray-400 text-sm">Tüm yazılım ve donanım tasarımları GitHub'da paylaşılacak</p>
-            </div>
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-600 to-accent flex items-center justify-center flex-shrink-0"><svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg></div>
+            <div><p class="font-semibold text-white text-base md:text-lg mb-1">Açık Kaynak</p><p class="text-gray-400 text-sm md:text-base">Tüm yazılım ve donanım tasarımları GitHub'da paylaşılacak</p></div>
           </div>
           <div class="flex items-start gap-4">
-            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center flex-shrink-0" aria-hidden="true">
-              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-            </div>
-            <div>
-              <p class="font-semibold text-white text-base mb-1">Cross-Platform</p>
-              <p class="text-gray-400 text-sm">Windows, macOS, Linux desteği hedeflenmektedir</p>
-            </div>
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center flex-shrink-0"><svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg></div>
+            <div><p class="font-semibold text-white text-base md:text-lg mb-1">Cross-Platform</p><p class="text-gray-400 text-sm md:text-base">Windows, macOS, Linux desteği hedeflenmektedir</p></div>
           </div>
           <div class="flex items-start gap-4">
-            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-600 to-blue-600 flex items-center justify-center flex-shrink-0" aria-hidden="true">
-              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-            </div>
-            <div>
-              <p class="font-semibold text-white text-base mb-1">Düşük Donanım</p>
-              <p class="text-gray-400 text-sm">Standart webcam ve uygun maliyetli sensörler yeterli</p>
-            </div>
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-600 to-blue-600 flex items-center justify-center flex-shrink-0"><svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg></div>
+            <div><p class="font-semibold text-white text-base md:text-lg mb-1">Düşük Donanım</p><p class="text-gray-400 text-sm md:text-base">Standart webcam ve uygun maliyetli sensörler yeterli</p></div>
           </div>
           <div class="flex items-start gap-4">
-            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-green-600 to-emerald-600 flex items-center justify-center flex-shrink-0" aria-hidden="true">
-              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-            </div>
-            <div>
-              <p class="font-semibold text-white text-base mb-1">Real-time</p>
-              <p class="text-gray-400 text-sm">Düşük gecikme ve yüksek hassasiyet ile anlık tepki</p>
-            </div>
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-green-600 to-emerald-600 flex items-center justify-center flex-shrink-0"><svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg></div>
+            <div><p class="font-semibold text-white text-base md:text-lg mb-1">Real-time</p><p class="text-gray-400 text-sm md:text-base">Düşük gecikme ve yüksek hassasiyet ile anlık tepki</p></div>
           </div>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- FOOTER -->
   <footer class="bg-gray-900 border-t border-gray-800 text-gray-400 py-10 px-5 sm:px-8">
     <div class="max-w-container mx-auto">
       <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
@@ -694,33 +516,30 @@
         </div>
         <div class="flex items-center gap-5">
           <a href="mailto:iletisim@nobarriertech.com" class="flex items-center gap-2 text-xs text-gray-400 hover:text-white transition-colors" aria-label="E-posta">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
             iletisim@nobarriertech.com
           </a>
           <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors" aria-label="LinkedIn">
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
           </a>
           <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors" aria-label="GitHub">
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
           </a>
         </div>
       </div>
-      <div class="mt-8 pt-6 border-t border-gray-800 text-center text-xs text-gray-600">
-        © 2026 NoBarrierTech. Tüm hakları saklıdır.
-      </div>
+      <div class="mt-8 pt-6 border-t border-gray-800 text-center text-xs text-gray-600">© 2026 NoBarrierTech. Tüm hakları saklıdır.</div>
     </div>
   </footer>
 
   <script>
-    // =================== NAVBAR ===================
-    const hamburger = document.getElementById('hamburger');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const bar1 = document.getElementById('bar1');
-    const bar2 = document.getElementById('bar2');
-    const bar3 = document.getElementById('bar3');
-    let menuOpen = false;
-
-    hamburger.addEventListener('click', () => {
+    // NAVBAR
+    var hamburger = document.getElementById('hamburger');
+    var mobileMenu = document.getElementById('mobile-menu');
+    var bar1 = document.getElementById('bar1');
+    var bar2 = document.getElementById('bar2');
+    var bar3 = document.getElementById('bar3');
+    var menuOpen = false;
+    hamburger.addEventListener('click', function() {
       menuOpen = !menuOpen;
       hamburger.setAttribute('aria-expanded', menuOpen);
       mobileMenu.classList.toggle('open', menuOpen);
@@ -730,131 +549,127 @@
         bar3.style.transform = 'translateY(-8px) rotate(-45deg)';
         bar3.style.width = '100%';
       } else {
-        bar1.style.transform = ''; bar2.style.opacity = ''; bar3.style.transform = ''; bar3.style.width = '';
+        bar1.style.transform = '';
+        bar2.style.opacity = '';
+        bar3.style.transform = '';
+        bar3.style.width = '';
       }
     });
+    mobileMenu.querySelectorAll('a').forEach(function(link) {
+      link.addEventListener('click', function() {
+        menuOpen = false;
+        hamburger.setAttribute('aria-expanded', false);
+        mobileMenu.classList.remove('open');
+        bar1.style.transform = '';
+        bar2.style.opacity = '';
+        bar3.style.transform = '';
+        bar3.style.width = '';
+      });
+    });
 
-    mobileMenu.querySelectorAll('a').forEach(l => l.addEventListener('click', () => {
-      menuOpen = false; hamburger.setAttribute('aria-expanded', false);
-      mobileMenu.classList.remove('open');
-      bar1.style.transform = ''; bar2.style.opacity = ''; bar3.style.transform = ''; bar3.style.width = '';
-    }));
-
-    // =================== VIDEO TOGGLE ===================
-    function setupVideo(containerId, videoId, btnId) {
-      const container = document.getElementById(containerId);
-      const video = document.getElementById(videoId);
-      const btn = document.getElementById(btnId);
+    // VIDEOS
+    function setupVideo(containerId, videoId) {
+      var container = document.getElementById(containerId);
+      var video = document.getElementById(videoId);
       if (!container || !video) return;
-
-      let playing = true;
-
-      // Show/hide play button based on video state
-      const updateBtn = () => {
-        if (video.paused) {
-          btn.style.opacity = '1';
-          btn.innerHTML = '<svg class="w-8 h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
-        } else {
-          btn.style.opacity = '0';
-        }
-      };
-
-      video.addEventListener('play', updateBtn);
-      video.addEventListener('pause', updateBtn);
-
-      container.addEventListener('click', () => {
+      container.addEventListener('click', function() {
         if (video.paused) { video.play(); } else { video.pause(); }
       });
-
-      container.addEventListener('keydown', (e) => {
+      container.addEventListener('keydown', function(e) {
         if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); container.click(); }
       });
-
-      // Intersection Observer for autoplay when visible
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            video.play().catch(() => {});
-          } else {
-            video.pause();
-          }
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) { video.play().catch(function(){}); } else { video.pause(); }
         });
       }, { threshold: 0.4 });
       observer.observe(container);
     }
+    setupVideo('video1-container', 'vid1');
+    setupVideo('video2-container', 'vid2');
 
-    setupVideo('video1-container', 'vid1', 'vid1-btn');
-    setupVideo('video2-container', 'vid2', 'vid2-btn');
-
-    // =================== CAROUSEL ===================
-    const carousels = {};
-
+    // CAROUSELS
+    var carousels = {};
     function initCarousel(id) {
-      const track = document.getElementById('track' + id.replace('carousel', ''));
-      const dotsContainer = document.getElementById('dots' + id.replace('carousel', ''));
-      const slides = track ? track.querySelectorAll('.carousel-slide') : [];
-      const total = slides.length;
+      var num = id.replace('carousel', '');
+      var track = document.getElementById('track' + num);
+      var dotsContainer = document.getElementById('dots' + num);
+      if (!track || !dotsContainer) return;
+      var slides = track.querySelectorAll('.carousel-slide');
+      var total = slides.length;
       if (!total) return;
-
-      carousels[id] = { current: 0, total, track, dots: [] };
-
-      // Create dots
-      for (let i = 0; i < total; i++) {
-        const dot = document.createElement('button');
+      carousels[id] = { current: 0, total: total, track: track, dots: [] };
+      for (var i = 0; i < total; i++) {
+        var dot = document.createElement('button');
         dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
-        dot.setAttribute('aria-label', `Slayt ${i + 1}`);
+        dot.setAttribute('aria-label', 'Slayt ' + (i + 1));
         dot.setAttribute('role', 'tab');
         dot.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
-        dot.addEventListener('click', () => goToSlide(id, i));
+        (function(idx) {
+          dot.addEventListener('click', function() { goToSlide(id, idx); });
+        })(i);
         dotsContainer.appendChild(dot);
         carousels[id].dots.push(dot);
       }
-
-      // Touch support
-      let startX = 0;
-      const el = document.getElementById(id);
+      var el = document.getElementById(id);
       if (el) {
-        el.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; }, { passive: true });
-        el.addEventListener('touchend', (e) => {
-          const diff = startX - e.changedTouches[0].clientX;
-          if (Math.abs(diff) > 40) { diff > 0 ? nextSlide(id) : prevSlide(id); }
+        var startX = 0;
+        el.addEventListener('touchstart', function(e) { startX = e.touches[0].clientX; }, { passive: true });
+        el.addEventListener('touchend', function(e) {
+          var diff = startX - e.changedTouches[0].clientX;
+          if (Math.abs(diff) > 40) { if (diff > 0) { nextSlide(id); } else { prevSlide(id); } }
         }, { passive: true });
-
-        // Keyboard
         el.setAttribute('tabindex', '0');
-        el.addEventListener('keydown', (e) => {
-          if (e.key === 'ArrowLeft') prevSlide(id);
-          if (e.key === 'ArrowRight') nextSlide(id);
+        el.addEventListener('keydown', function(e) {
+          if (e.key === 'ArrowLeft') { prevSlide(id); }
+          if (e.key === 'ArrowRight') { nextSlide(id); }
         });
       }
     }
-
     function goToSlide(id, index) {
-      const c = carousels[id];
+      var c = carousels[id];
       if (!c) return;
       c.current = index;
-      c.track.style.transform = `translateX(-${index * 100}%)`;
-      c.dots.forEach((d, i) => {
+      c.track.style.transform = 'translateX(-' + (index * 100) + '%)';
+      c.dots.forEach(function(d, i) {
         d.classList.toggle('active', i === index);
         d.setAttribute('aria-selected', i === index ? 'true' : 'false');
       });
     }
-
     function nextSlide(id) {
-      const c = carousels[id];
+      var c = carousels[id];
       if (!c) return;
       goToSlide(id, (c.current + 1) % c.total);
     }
-
     function prevSlide(id) {
-      const c = carousels[id];
+      var c = carousels[id];
       if (!c) return;
       goToSlide(id, (c.current - 1 + c.total) % c.total);
     }
-
     initCarousel('carousel3');
     initCarousel('carousel4');
     initCarousel('carousel5');
+
+    // FULLSCREEN API LOGIC
+    document.querySelectorAll('.fullscreen-btn').forEach(function(btn) {
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation(); // Container'daki play/pause tıklama olayını engelle
+
+        var container = this.closest('.video-area');
+        var video = container.querySelector('video');
+
+        if (video) {
+          if (video.requestFullscreen) {
+            video.requestFullscreen(); // Standart
+          } else if (video.webkitRequestFullscreen) { 
+            video.webkitRequestFullscreen(); // Safari / iOS
+          } else if (video.msRequestFullscreen) { 
+            video.msRequestFullscreen(); // IE11 / Eski Edge
+          }
+        }
+      });
+    });
+
   </script>
 </body>
 </html>
