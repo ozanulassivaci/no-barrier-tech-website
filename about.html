@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hakkımda – NoBarrierTech</title>
+  <meta name="description" content="Teknoloji ile erişilebilir bir gelecek inşa etmek. Mühendislik, Yapay Zeka ve Sosyal Etki odaklı bir yolculuk." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { display: ['Sora','sans-serif'], body: ['DM Sans','sans-serif'] },
+          colors: {
+            brand: { 50:'#eef2ff', 100:'#e0e7ff', 500:'#6366f1', 600:'#4f46e5', 700:'#4338ca', 900:'#1e1b4b' },
+            accent: '#06b6d4',
+          },
+          maxWidth: { container: '1200px' },
+        },
+      },
+    };
+  </script>
+  <style>
+    * { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; }
+    h1,h2,h3,.font-display { font-family: 'Sora', sans-serif; }
+
+    /* Navbar */
+    nav { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+    #mobile-menu { transition: max-height 0.3s ease, opacity 0.3s ease; max-height: 0; overflow: hidden; opacity: 0; }
+    #mobile-menu.open { max-height: 300px; opacity: 1; }
+
+    /* Hero gradient */
+    .hero-about {
+      background: linear-gradient(135deg, #eef2ff 0%, #f0f9ff 50%, #ede9fe 100%);
+    }
+
+    /* Card hover */
+    .card-hover { transition: transform 0.25s ease, box-shadow 0.25s ease; }
+    .card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.09); }
+
+    /* Vision gradient card */
+    .vision-card {
+      background: linear-gradient(135deg, #4338ca 0%, #6366f1 50%, #06b6d4 100%);
+    }
+
+    /* Fade up */
+    @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+    .fade-up { animation: fadeUp 0.65s ease both; }
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
+
+    /* Contact dark section */
+    .contact-dark { background: #0f172a; }
+
+    /* Gradient text */
+    .gradient-text {
+      background: linear-gradient(135deg, #4338ca, #6366f1, #06b6d4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* YGA badge */
+    .yga-badge {
+      background: linear-gradient(135deg, rgba(99,102,241,0.1), rgba(6,182,212,0.1));
+      border: 1.5px solid rgba(99,102,241,0.25);
+    }
+
+    /* Contact card hover */
+    .contact-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: all 0.25s ease;
+    }
+    .contact-card:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(99,102,241,0.4);
+      transform: translateY(-3px);
+    }
+
+    /* Step number badge */
+    .step-num {
+      width: 32px; height: 32px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Sora', sans-serif; font-weight: 700; font-size: 14px;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body class="bg-[#f8f9fb] text-gray-800 antialiased">
+
+  <!-- NAVBAR -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-white/80 border-b border-gray-100/80">
+    <div class="max-w-container mx-auto px-5 sm:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="index.html" class="flex flex-col leading-tight group" aria-label="NoBarrierTech Ana Sayfa">
+          <span class="font-display text-lg text-brand-600 group-hover:text-brand-700 transition-colors" style="font-weight:700">NoBarrierTech</span>
+          <span class="text-gray-400 font-body" style="font-size:10px;letter-spacing:0.03em">Engelsiz Teknoloji</span>
+        </a>
+        <div class="hidden md:flex items-center gap-8">
+          <a href="solutions.html" class="text-sm font-medium text-gray-600 hover:text-brand-600 transition-colors">Çözümler</a>
+          <a href="about.html" class="text-sm font-semibold text-brand-600 border-b-2 border-brand-500 pb-0.5" aria-current="page">Hakkımızda</a>
+        </div>
+        <button id="hamburger" class="md:hidden flex flex-col justify-center gap-1.5 w-10 h-10 rounded-lg hover:bg-gray-100 transition-colors p-2" aria-label="Menüyü aç" aria-expanded="false">
+          <span class="block w-full h-0.5 bg-gray-700 rounded transition-all duration-300" id="bar1"></span>
+          <span class="block w-full h-0.5 bg-gray-700 rounded transition-all duration-300" id="bar2"></span>
+          <span class="block w-5 h-0.5 bg-gray-700 rounded transition-all duration-300" id="bar3"></span>
+        </button>
+      </div>
+    </div>
+    <div id="mobile-menu" class="md:hidden bg-white border-t border-gray-100">
+      <div class="px-5 py-4 flex flex-col gap-1">
+        <a href="solutions.html" class="px-4 py-3 rounded-xl text-sm font-medium text-gray-700 hover:bg-brand-50 hover:text-brand-600 transition-colors">Çözümler</a>
+        <a href="about.html" class="px-4 py-3 rounded-xl text-sm font-semibold text-brand-600 bg-brand-50">Hakkımızda</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero-about pt-32 pb-20 px-5 sm:px-8 text-center" aria-labelledby="hero-heading">
+      <div class="max-w-container mx-auto">
+        <div class="fade-up inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/70 border border-brand-100 text-sm font-medium text-brand-600 mb-8 shadow-sm">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/></svg>
+          Öğrenci Girişimi
+        </div>
+        <h1 id="hero-heading" class="fade-up delay-1 font-display text-4xl sm:text-5xl md:text-6xl font-extrabold text-gray-900 mb-5 max-w-4xl mx-auto leading-tight" style="font-weight:800;line-height:1.1">
+          Teknoloji ile <span class="gradient-text">Erişilebilir Bir Gelecek</span> İnşa Etmek
+        </h1>
+        <p class="fade-up delay-2 text-lg sm:text-xl text-gray-500 max-w-2xl mx-auto leading-relaxed">
+          Mühendislik, Yapay Zeka ve Sosyal Etki Odaklı Bir Yolculuk
+        </p>
+      </div>
+    </section>
+
+    <!-- INTRO / ABOUT CARD (with YGA badge) -->
+    <section class="py-8 px-5 sm:px-8" aria-labelledby="intro-heading">
+      <div class="max-w-container mx-auto">
+        <div class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
+          <div class="flex flex-col lg:flex-row gap-0">
+            <!-- Photo placeholder -->
+            <div class="lg:w-80 xl:w-96 flex-shrink-0 bg-gradient-to-br from-brand-50 to-blue-50 flex items-center justify-center p-10 min-h-64">
+              <div class="text-center">
+                <div class="w-36 h-36 rounded-3xl bg-gradient-to-br from-brand-100 to-cyan-100 flex items-center justify-center mx-auto mb-4 border-4 border-white shadow-lg">
+                  <svg class="w-16 h-16 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+                </div>
+                <p class="text-sm font-semibold text-gray-700">Kurucu &amp; Geliştirici</p>
+                <p class="text-xs text-gray-400 mt-1">NoBarrierTech</p>
+              </div>
+            </div>
+
+            <!-- Text -->
+            <div class="flex-1 p-8 sm:p-10 lg:p-12">
+              <!-- YGA badge -->
+              <div class="yga-badge inline-flex items-center gap-2.5 px-4 py-2 rounded-xl mb-6">
+                <div class="flex items-center gap-1.5">
+                  <div class="w-5 h-5 rounded-md bg-gradient-to-br from-brand-600 to-accent flex items-center justify-center" aria-hidden="true">
+                    <span class="text-white font-bold" style="font-size:9px">YGA</span>
+                  </div>
+                  <span class="text-xs font-semibold text-brand-700">Young Guru Academy Başvurusu</span>
+                </div>
+              </div>
+
+              <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-50 border border-brand-100 text-xs font-semibold text-brand-600 mb-5">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+                Kurucu &amp; Geliştirici
+              </span>
+
+              <h2 id="intro-heading" class="font-display text-3xl font-bold text-gray-900 mb-5" style="font-weight:700">Merhaba!</h2>
+
+              <div class="space-y-4 text-gray-600 text-base leading-relaxed">
+                <p>Ben teknolojinin yalnızca üretenler için değil, <strong class="text-gray-800">herkes için erişilebilir olması gerektiğine</strong> inanıyorum.</p>
+                <p>Yapay zeka, bilgisayarlı görü ve gömülü sistemler alanlarına olan ilgim; yalnızca teknik meraktan değil, gerçek bir problemi çözme isteğinden doğdu. Fiziksel engelli bireylerin teknolojiye erişimde yaşadığı zorlukları gördükçe, mühendisliğin yalnızca kod yazmak olmadığını; <strong class="text-gray-800">hayatlara dokunmak olduğunu</strong> fark ettim.</p>
+                <p class="text-brand-600 font-semibold text-lg">NoBarrierTech'i bu düşünceyle başlattım.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STORY / HİKAYEM -->
+    <section class="py-10 px-5 sm:px-8" aria-labelledby="story-heading">
+      <div class="max-w-container mx-auto">
+        <div class="bg-white rounded-3xl shadow-sm border border-gray-100 p-8 sm:p-10 lg:p-12 max-w-3xl mx-auto">
+          <div class="flex items-center gap-4 mb-7">
+            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-brand-600 to-purple-600 flex items-center justify-center shadow-md" aria-hidden="true">
+              <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+            </div>
+            <h2 id="story-heading" class="font-display text-2xl sm:text-3xl font-bold text-gray-900" style="font-weight:700">Hikayem</h2>
+          </div>
+
+          <p class="font-display text-brand-600 italic text-lg font-semibold mb-7">"Teknoloji herkes için olmalı."</p>
+
+          <div class="space-y-5 text-gray-600 text-base leading-relaxed">
+            <p>Amacım; düşük maliyetli, <strong class="text-gray-800">açık kaynaklı ve sürdürülebilir çözümler</strong> geliştirerek fiziksel engelli bireylerin teknolojiye daha eşit şekilde erişebilmesini sağlamak.</p>
+
+            <div class="bg-gray-50 rounded-2xl p-5 border border-gray-100">
+              <p class="font-semibold text-gray-800 text-sm mb-3">Bu yolculukta:</p>
+              <ul class="space-y-2.5" role="list">
+                <li class="flex items-center gap-3 text-sm text-gray-600">
+                  <span class="w-2 h-2 rounded-full bg-brand-500 flex-shrink-0" aria-hidden="true"></span>Araştırma yapıyorum.
+                </li>
+                <li class="flex items-center gap-3 text-sm text-gray-600">
+                  <span class="w-2 h-2 rounded-full bg-brand-500 flex-shrink-0" aria-hidden="true"></span>Prototipler geliştiriyorum.
+                </li>
+                <li class="flex items-center gap-3 text-sm text-gray-600">
+                  <span class="w-2 h-2 rounded-full bg-brand-500 flex-shrink-0" aria-hidden="true"></span>Yapay zeka ve donanım çözümleri üzerine çalışıyorum.
+                </li>
+                <li class="flex items-center gap-3 text-sm text-gray-600">
+                  <span class="w-2 h-2 rounded-full bg-brand-500 flex-shrink-0" aria-hidden="true"></span>Uzun vadeli sosyal etki üretmeyi hedefliyorum.
+                </li>
+              </ul>
+            </div>
+
+            <p>Benim için teknoloji; yalnızca inovasyon değil, <strong class="text-gray-800">sorumluluktur.</strong></p>
+
+            <div class="border-l-4 border-brand-500 pl-5 py-1">
+              <p class="font-semibold text-gray-800 mb-1">Uzun vadede hedefim:</p>
+              <p class="text-gray-600">Türkiye'den çıkan, küresel ölçekte erişilebilirlik çözümleri üreten bir teknoloji girişimi inşa etmek. Ve bu süreci yalnız yürümek değil, doğru insanlarla birlikte büyütmek istiyorum.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VİZYON & MİSYON -->
+    <section class="py-10 px-5 sm:px-8" aria-labelledby="vision-heading">
+      <div class="max-w-container mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+          <!-- Vision (gradient) -->
+          <div class="vision-card rounded-3xl p-8 sm:p-10 text-white">
+            <div class="w-14 h-14 rounded-2xl bg-white/15 flex items-center justify-center mb-6" aria-hidden="true">
+              <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+            </div>
+            <h2 id="vision-heading" class="font-display text-2xl sm:text-3xl font-bold mb-5" style="font-weight:700">Vizyon</h2>
+            <p class="text-white/85 text-base leading-relaxed mb-4">
+              Erişilebilirliğin bir ayrıcalık değil, <strong class="text-white">temel bir hak</strong> olduğu bir teknoloji ekosistemi oluşturmak.
+            </p>
+            <p class="text-white/70 text-sm leading-relaxed">
+              Fiziksel engelli her bireyin teknolojiye tam ve eşit erişebildiği, yardımcı teknolojilerin herkesin kolayca ulaşabildiği bir gelecek inşa etmek istiyorum.
+            </p>
+          </div>
+
+          <!-- Mission (white) -->
+          <div class="bg-white rounded-3xl p-8 sm:p-10 border border-gray-100 shadow-sm">
+            <div class="w-14 h-14 rounded-2xl bg-brand-100 flex items-center justify-center mb-6" aria-hidden="true">
+              <svg class="w-7 h-7 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke-width="2"/><circle cx="12" cy="12" r="4" stroke-width="2"/><path stroke-linecap="round" stroke-width="2" d="M12 2v2m0 16v2M2 12h2m16 0h2"/></svg>
+            </div>
+            <h2 class="font-display text-2xl sm:text-3xl font-bold text-gray-900 mb-5" style="font-weight:700">Misyon</h2>
+            <p class="text-gray-600 text-base leading-relaxed mb-4">
+              <span class="text-brand-600 font-semibold">Açık kaynak</span>, <span class="text-brand-600 font-semibold">düşük maliyetli</span> ve <span class="text-accent font-semibold">kullanıcı dostu</span> yardımcı teknolojiler geliştirerek fiziksel engelli bireylerin teknolojiye eşit erişimini sağlamak.
+            </p>
+            <p class="text-gray-500 text-sm leading-relaxed">
+              Öğrencilik dönemimde edindiğim mühendislik bilgisini ve teknolojiyi toplumsal fayda için kullanarak gerçek etki yaratan çözümler üretmek.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEDEN ÖNEMLİ -->
+    <section class="py-14 px-5 sm:px-8 bg-white" aria-labelledby="why-heading">
+      <div class="max-w-container mx-auto">
+        <h2 id="why-heading" class="font-display text-3xl sm:text-4xl font-bold text-gray-900 text-center mb-12" style="font-weight:700">Neden Bu Kadar Önemli?</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <div class="card-hover bg-gray-50 rounded-2xl p-7 border border-gray-100">
+            <div class="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center mb-5" aria-hidden="true">
+              <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+            </div>
+            <h3 class="font-display font-bold text-gray-900 text-lg mb-3" style="font-weight:700">Erişilebilirlik Bir Haktır</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">Herkesin teknolojiye eşit erişim hakkı vardır. Fiziksel engeller, dijital dünyadan dışlanmanın sebebi olmamalıdır.</p>
+          </div>
+
+          <div class="card-hover bg-gray-50 rounded-2xl p-7 border border-gray-100">
+            <div class="w-12 h-12 rounded-xl bg-purple-100 flex items-center justify-center mb-5" aria-hidden="true">
+              <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <h3 class="font-display font-bold text-gray-900 text-lg mb-3" style="font-weight:700">Düşük Maliyet Şart</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">Ticari yardımcı teknolojiler çok pahalı. Açık kaynak ve uygun maliyetli alternatifler geliştirmek hayati önem taşıyor.</p>
+          </div>
+
+          <div class="card-hover bg-gray-50 rounded-2xl p-7 border border-gray-100">
+            <div class="w-12 h-12 rounded-xl bg-cyan-100 flex items-center justify-center mb-5" aria-hidden="true">
+              <svg class="w-6 h-6 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+            </div>
+            <h3 class="font-display font-bold text-gray-900 text-lg mb-3" style="font-weight:700">Teknoloji Hızla Gelişiyor</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">Yapay zeka ve bilgisayarlı görü gibi modern teknolojileri erişilebilirlik alanına taşımak, yeni fırsatlar yaratıyor.</p>
+          </div>
+
+          <div class="card-hover bg-gray-50 rounded-2xl p-7 border border-gray-100">
+            <div class="w-12 h-12 rounded-xl bg-green-100 flex items-center justify-center mb-5" aria-hidden="true">
+              <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <h3 class="font-display font-bold text-gray-900 text-lg mb-3" style="font-weight:700">Global Etki</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">Açık kaynak yaklaşımıyla, geliştirilen çözümler dünya çapında kullanılabilir ve topluluk tarafından iyileştirilebilir.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DEĞERLERİM -->
+    <section class="py-14 px-5 sm:px-8" aria-labelledby="values-heading">
+      <div class="max-w-container mx-auto">
+        <div class="max-w-3xl mx-auto">
+          <h2 id="values-heading" class="font-display text-3xl sm:text-4xl font-bold text-gray-900 text-center mb-10" style="font-weight:700">Değerlerim</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div class="card-hover bg-white rounded-2xl p-6 border border-gray-100 shadow-sm text-center">
+              <div class="w-11 h-11 rounded-xl bg-blue-100 flex items-center justify-center mx-auto mb-4" aria-hidden="true">
+                <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+              </div>
+              <p class="font-display font-semibold text-gray-900 text-sm" style="font-weight:600">İnsan Odaklı Mühendislik</p>
+            </div>
+            <div class="card-hover bg-white rounded-2xl p-6 border border-gray-100 shadow-sm text-center">
+              <div class="w-11 h-11 rounded-xl bg-purple-100 flex items-center justify-center mx-auto mb-4" aria-hidden="true">
+                <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+              </div>
+              <p class="font-display font-semibold text-gray-900 text-sm" style="font-weight:600">Etik Yapay Zeka</p>
+            </div>
+            <div class="card-hover bg-white rounded-2xl p-6 border border-gray-100 shadow-sm text-center">
+              <div class="w-11 h-11 rounded-xl bg-green-100 flex items-center justify-center mx-auto mb-4" aria-hidden="true">
+                <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+              </div>
+              <p class="font-display font-semibold text-gray-900 text-sm" style="font-weight:600">Açık Kaynak Kültürü</p>
+            </div>
+            <div class="card-hover bg-white rounded-2xl p-6 border border-gray-100 shadow-sm text-center">
+              <div class="w-11 h-11 rounded-xl bg-orange-100 flex items-center justify-center mx-auto mb-4" aria-hidden="true">
+                <svg class="w-5 h-5 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              </div>
+              <p class="font-display font-semibold text-gray-900 text-sm" style="font-weight:600">Uzun Vadeli Sosyal Etki</p>
+            </div>
+            <div class="card-hover bg-white rounded-2xl p-6 border border-gray-100 shadow-sm text-center sm:col-span-2 lg:col-span-1">
+              <div class="w-11 h-11 rounded-xl bg-cyan-100 flex items-center justify-center mx-auto mb-4" aria-hidden="true">
+                <svg class="w-5 h-5 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+              </div>
+              <p class="font-display font-semibold text-gray-900 text-sm" style="font-weight:600">Sürekli Öğrenme ve Gelişim</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GELECEK HEDEFLERİM -->
+    <section class="py-14 px-5 sm:px-8 bg-white" aria-labelledby="goals-heading">
+      <div class="max-w-container mx-auto">
+        <div class="max-w-2xl mx-auto bg-gradient-to-br from-blue-50 to-cyan-50 rounded-3xl p-8 sm:p-10 border border-blue-100">
+          <div class="flex items-center gap-4 mb-8">
+            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-brand-500 to-accent flex items-center justify-center shadow-md" aria-hidden="true">
+              <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            </div>
+            <h2 id="goals-heading" class="font-display text-2xl sm:text-3xl font-bold text-gray-900" style="font-weight:700">Gelecek Hedeflerim</h2>
+          </div>
+
+          <ol class="space-y-6" role="list">
+            <li class="flex items-start gap-4">
+              <span class="step-num bg-brand-600 text-white">1</span>
+              <div>
+                <p class="font-semibold text-gray-900 mb-1">Projelerimizi Gerçekleştirmek</p>
+                <p class="text-gray-500 text-sm leading-relaxed">Araştırma ve geliştirme aşamasındaki çözümleri kullanılabilir ürünlere dönüştürmek</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-4">
+              <span class="step-num bg-purple-600 text-white">2</span>
+              <div>
+                <p class="font-semibold text-gray-900 mb-1">Açık Kaynak Topluluğu Oluşturmak</p>
+                <p class="text-gray-500 text-sm leading-relaxed">Gönüllü geliştiriciler ve kullanıcılarla birlikte büyüyerek daha iyi çözümler üretmek</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-4">
+              <span class="step-num text-white" style="background: linear-gradient(135deg, #4f46e5, #7c3aed);">3</span>
+              <div>
+                <p class="font-semibold text-gray-900 mb-1">Kullanıcılarla Doğrudan Çalışmak</p>
+                <p class="text-gray-500 text-sm leading-relaxed">Gerçek ihtiyaçları anlamak için fiziksel engelli bireylerle daha fazla iş birliği yapmak</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-4">
+              <span class="step-num text-white" style="background: linear-gradient(135deg, #06b6d4, #0ea5e9);">4</span>
+              <div>
+                <p class="font-semibold text-gray-900 mb-1">Eğitim ve Farkındalık</p>
+                <p class="text-gray-500 text-sm leading-relaxed">Erişilebilirlik konusunda toplumda farkındalık yaratmak ve teknoloji eğitimleri vermek</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- İLETİŞİM & İŞBİRLİĞİ (dark) -->
+    <section id="contact" class="contact-dark py-20 px-5 sm:px-8" aria-labelledby="contact-heading">
+      <div class="max-w-container mx-auto text-center">
+        <h2 id="contact-heading" class="font-display text-3xl sm:text-4xl font-bold text-white mb-5" style="font-weight:700">İletişim ve İş Birliği</h2>
+        <p class="text-gray-400 text-base sm:text-lg max-w-2xl mx-auto mb-12 leading-relaxed">
+          Projelerim hakkında konuşmak, katkıda bulunmak, iş birliği yapmak veya destek olmak için benimle iletişime geçebilirsiniz. Her türlü geri bildirime ve öneriye açığım!
+        </p>
+
+        <!-- Contact cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto mb-10">
+          <a href="mailto:iletisim@nobarriertech.com" class="contact-card rounded-2xl p-7 flex flex-col items-center gap-4 text-center no-underline">
+            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center shadow-lg" aria-hidden="true">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            </div>
+            <div>
+              <p class="font-semibold text-white text-base">Email</p>
+              <p class="text-cyan-400 text-sm mt-1">iletisim@nobarriertech.com</p>
+            </div>
+          </a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="contact-card rounded-2xl p-7 flex flex-col items-center gap-4 text-center no-underline">
+            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-600 to-purple-600 flex items-center justify-center shadow-lg" aria-hidden="true">
+              <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </div>
+            <div>
+              <p class="font-semibold text-white text-base">LinkedIn</p>
+              <p class="text-cyan-400 text-sm mt-1">Beni Takip Edin</p>
+            </div>
+          </a>
+          <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="contact-card rounded-2xl p-7 flex flex-col items-center gap-4 text-center no-underline">
+            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-gray-600 to-gray-800 flex items-center justify-center shadow-lg" aria-hidden="true">
+              <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+            </div>
+            <div>
+              <p class="font-semibold text-white text-base">GitHub</p>
+              <p class="text-cyan-400 text-sm mt-1">Kodları İncele</p>
+            </div>
+          </a>
+        </div>
+
+        <!-- Open source CTA -->
+        <div class="max-w-2xl mx-auto rounded-2xl p-8 text-center mb-12" style="background: linear-gradient(135deg, #312e81 0%, #4f46e5 50%, #06b6d4 100%);">
+          <h3 class="font-display text-xl font-bold text-white mb-3" style="font-weight:700">Açık Kaynak Projelerime Katkıda Bulunun</h3>
+          <p class="text-white/75 text-sm mb-6">Tüm projelerimi GitHub'da açık kaynak olarak paylaşıyorum. Geliştirici misiniz? Katkıda bulunmak ister misiniz?</p>
+          <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-white text-brand-700 font-semibold text-sm hover:bg-white/90 transition-all hover:-translate-y-0.5 shadow-lg">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+            GitHub'da Keşfet
+          </a>
+        </div>
+
+        <!-- Closing quote -->
+        <p class="text-gray-500 italic text-base sm:text-lg" style="font-family:'Sora',sans-serif">
+          "Teknoloji, toplumsal sorunları çözmek için kullanıldığında gerçek değerini bulur."
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-gray-900 border-t border-gray-800 text-gray-400 py-10 px-5 sm:px-8">
+    <div class="max-w-container mx-auto">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+        <div>
+          <p class="font-display font-bold text-white text-base mb-1" style="font-weight:700">NoBarrierTech</p>
+          <p class="text-xs text-gray-500">Engelsiz Teknoloji · Herkes İçin Erişilebilir Çözümler</p>
+        </div>
+        <div class="flex flex-wrap items-center gap-4">
+          <a href="mailto:iletisim@nobarriertech.com" class="flex items-center gap-2 text-xs text-gray-400 hover:text-white transition-colors" aria-label="E-posta">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            iletisim@nobarriertech.com
+          </a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors" aria-label="LinkedIn">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+          <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors" aria-label="GitHub">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+          </a>
+          <a href="#" class="text-xs text-gray-400 hover:text-white transition-colors">Kişisel Web Sitem</a>
+          <a href="#" class="text-xs text-gray-400 hover:text-white transition-colors">Proje Ekibi</a>
+        </div>
+      </div>
+      <div class="mt-8 pt-6 border-t border-gray-800 text-center text-xs text-gray-600">
+        © 2026 NoBarrierTech. Tüm hakları saklıdır.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // NAVBAR
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const bar1 = document.getElementById('bar1');
+    const bar2 = document.getElementById('bar2');
+    const bar3 = document.getElementById('bar3');
+    let menuOpen = false;
+
+    hamburger.addEventListener('click', () => {
+      menuOpen = !menuOpen;
+      hamburger.setAttribute('aria-expanded', menuOpen);
+      mobileMenu.classList.toggle('open', menuOpen);
+      if (menuOpen) {
+        bar1.style.transform = 'translateY(8px) rotate(45deg)';
+        bar2.style.opacity = '0';
+        bar3.style.transform = 'translateY(-8px) rotate(-45deg)';
+        bar3.style.width = '100%';
+      } else {
+        bar1.style.transform = ''; bar2.style.opacity = ''; bar3.style.transform = ''; bar3.style.width = '';
+      }
+    });
+
+    mobileMenu.querySelectorAll('a').forEach(l => l.addEventListener('click', () => {
+      menuOpen = false; hamburger.setAttribute('aria-expanded', false);
+      mobileMenu.classList.remove('open');
+      bar1.style.transform = ''; bar2.style.opacity = ''; bar3.style.transform = ''; bar3.style.width = '';
+    }));
+  </script>
+</body>
+</html>
